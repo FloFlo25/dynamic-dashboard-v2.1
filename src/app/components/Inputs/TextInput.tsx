@@ -64,6 +64,9 @@ const TextInput = ({
 					"&:hover": {
 						background: "white",
 					},
+					"&.Mui-focused:not(:hover)": {
+						background: "white",
+					},
 				},
 			}}
 		/>
