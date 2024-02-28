@@ -26,7 +26,6 @@ const TextInput = ({
 				"Placeholder"
 			}
 			InputProps={{
-				className: "rounded hover:border-black focu",
 				startAdornment: (
 					<InputAdornment position="start">
 						{
@@ -76,10 +75,12 @@ const TextInput = ({
 						borderRadius: "14px",
 						"&:hover": {
 							background: "white",
+							borderColor: "black",
 						},
 						"&.Mui-focused:not(:hover)":
 							{
 								background: "white",
+								borderColor: "black",
 							},
 					},
 			}}
