@@ -9,6 +9,9 @@ export default {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
     },
+    borderRadius: {
+      DEFAULT: "14px"
+    },
     screens: {
       "sm": "640px",
       "md": "768px",

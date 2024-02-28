@@ -1,7 +1,6 @@
-import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function HomePage() {
-  return (
-    <div>Home</div>
-  );
+	redirect("/login");
+	return <div>Home</div>;
 }

@@ -7,6 +7,7 @@ import React from "react";
 
 import TextInput from "../components/Inputs/TextInput";
 import Image from "next/image";
+import PrimaryButton from "../components/Inputs/Buttons/PrimaryButton";
 
 const Login = () => {
 	const [showPassword, setShowPassword] =
@@ -64,6 +65,9 @@ const Login = () => {
 								: "password"
 						}
 					/>
+					<PrimaryButton>
+						Login
+					</PrimaryButton>
 				</div>
 			</div>
 		</div>
