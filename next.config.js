@@ -5,6 +5,10 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+	output: "export",
+	reactStrictMode: true,
+	basePath: "/dynamic-dashboard-v2.1",
+};
 
 export default config;
