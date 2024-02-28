@@ -21,7 +21,6 @@ const TextInput = ({
 	return (
 		<TextField
 			{...props}
-			label=""
 			placeholder={props.placeholder ?? "Placeholder"}
 			InputProps={{
 				startAdornment: (
@@ -46,25 +45,26 @@ const TextInput = ({
 						)}
 					</InputAdornment>
 				),
+				disableUnderline: true,
 			}}
-			InputLabelProps={{
-				shrink: false,
-			}}
+			variant="filled"
+			hiddenLabel
+			InputLabelProps={{ shrink: false }}
 			sx={{
-				"& .MuiOutlinedInput-root": {
-					"& fieldset": {
-						borderRadius: "14px",
-						borderWidth: "2px",
-					},
-					"&.Mui-focused fieldset": {
-						borderColor: "black",
-					},
-					"& legend span": {
-						color: "red",
-					},
+				"& .MuiInputBase-input": {
+					padding: "10px 0",
 				},
 				"& .MuiInputAdornment-positionStart svg":
 					{ color: "black" },
+				"& .MuiFilledInput-root": {
+					background: "white",
+					overflow: "hidden",
+					border: "2px solid grey",
+					borderRadius: "14px",
+					"&:hover": {
+						background: "white",
+					},
+				},
 			}}
 		/>
 	);
