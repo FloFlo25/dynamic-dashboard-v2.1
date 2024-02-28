@@ -1,1 +1,1 @@
-{ "tabWidth": 10, "useTabs": true, "semi": true }
+{ "tabWidth": 10, "useTabs": true, "semi": true, "printWidth": 60 }
