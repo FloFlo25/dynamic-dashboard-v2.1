@@ -21,11 +21,17 @@ const TextInput = ({
 	return (
 		<TextField
 			{...props}
-			placeholder={props.placeholder ?? "Placeholder"}
+			placeholder={
+				props.placeholder ??
+				"Placeholder"
+			}
 			InputProps={{
+				className: "rounded hover:border-black focu",
 				startAdornment: (
 					<InputAdornment position="start">
-						{startIcon}
+						{
+							startIcon
+						}
 					</InputAdornment>
 				),
 				endAdornment: (
@@ -45,29 +51,37 @@ const TextInput = ({
 						)}
 					</InputAdornment>
 				),
-				disableUnderline: true,
+				disableUnderline:
+					true,
 			}}
 			variant="filled"
 			hiddenLabel
-			InputLabelProps={{ shrink: false }}
+			InputLabelProps={{
+				shrink: false,
+			}}
 			sx={{
-				"& .MuiInputBase-input": {
-					padding: "10px 0",
-				},
+				"& .MuiInputBase-input":
+					{
+						padding: "10px 0",
+					},
 				"& .MuiInputAdornment-positionStart svg":
-					{ color: "black" },
-				"& .MuiFilledInput-root": {
-					background: "white",
-					overflow: "hidden",
-					border: "2px solid grey",
-					borderRadius: "14px",
-					"&:hover": {
-						background: "white",
+					{
+						color: "black",
 					},
-					"&.Mui-focused:not(:hover)": {
+				"& .MuiFilledInput-root":
+					{
 						background: "white",
+						overflow: "hidden",
+						border: "2px solid grey",
+						borderRadius: "14px",
+						"&:hover": {
+							background: "white",
+						},
+						"&.Mui-focused:not(:hover)":
+							{
+								background: "white",
+							},
 					},
-				},
 			}}
 		/>
 	);

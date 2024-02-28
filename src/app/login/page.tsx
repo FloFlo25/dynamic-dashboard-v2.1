@@ -27,7 +27,7 @@ const Login = () => {
 		>
 			<div
 				className="flex flex-col justify-start items-center gap-48 bg-white
-       bg-opacity-25 backdrop-blur-sm rounded-none drop-shadow-lg px-0 py-12 m-0 h-full sm:px-16 sm:m-7 sm:rounded-3xl w-full sm:w-96"
+       bg-opacity-25 backdrop-blur-sm rounded-none drop-shadow-lg px-0 py-12 m-0 h-full w-full sm:px-16 sm:m-7 sm:rounded sm:w-[500px]"
 			>
 				<Image
 					alt="Dynamic Logo"
