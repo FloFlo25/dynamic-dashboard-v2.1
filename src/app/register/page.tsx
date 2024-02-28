@@ -9,7 +9,7 @@ import TextInput from "../components/Inputs/TextInput";
 import Image from "next/image";
 import PrimaryButton from "../components/Inputs/Buttons/PrimaryButton";
 
-const Login = () => {
+const Register = () => {
 	const [showPassword, setShowPassword] = React.useState(false);
 
 	const onClickShowPassword = () =>
@@ -59,7 +59,7 @@ const Login = () => {
 						}
 					/>
 					<PrimaryButton>
-						Login
+						Register
 					</PrimaryButton>
 				</div>
 			</div>
@@ -67,4 +67,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default Register;

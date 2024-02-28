@@ -21,6 +21,7 @@ const TextInput = ({
 	return (
 		<TextField
 			{...props}
+			className="w-full"
 			placeholder={props.placeholder ?? "Placeholder"}
 			InputProps={{
 				startAdornment: (
