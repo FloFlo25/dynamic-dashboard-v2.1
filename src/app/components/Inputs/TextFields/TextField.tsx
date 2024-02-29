@@ -60,7 +60,7 @@ const TextField = ({ onEndIconClick, ...props }: Props) => {
 							e.preventDefault();
 							onEndIconClick?.();
 						}}
-						className={`${baseAdornmentClassNames} rounded-full my-1.5 mr-2 px-1.5 hover:bg-black hover:cursor-pointer`}
+						className={`${baseAdornmentClassNames} rounded-full my-1.5 mr-2 px-1.5 hover:bg-[#373c4e] hover:cursor-pointer active:bg-[#4b526b]`}
 					>
 						{props.endAdornment}
 					</div>

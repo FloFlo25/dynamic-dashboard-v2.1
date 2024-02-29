@@ -3,6 +3,7 @@
 import AlternateEmailRoundedIcon from "@mui/icons-material/AlternateEmailRounded";
 import PasswordRoundedIcon from "@mui/icons-material/PasswordRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
+import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import React from "react";
 
 import Image from "next/image";
@@ -52,7 +53,11 @@ const Login = () => {
 							<PasswordRoundedIcon />
 						}
 						endAdornment={
-							<VisibilityRoundedIcon />
+							showPassword ? (
+								<VisibilityOffRoundedIcon />
+							) : (
+								<VisibilityRoundedIcon />
+							)
 						}
 						onEndIconClick={
 							onClickShowPassword
