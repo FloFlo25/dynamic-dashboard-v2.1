@@ -8,6 +8,7 @@ import React from "react";
 import TextInput from "../components/Inputs/TextInput";
 import Image from "next/image";
 import PrimaryButton from "../components/Inputs/Buttons/PrimaryButton";
+import TextField from "../components/Inputs/TextFields/TextField";
 
 const Login = () => {
 	const [showPassword, setShowPassword] = React.useState(false);
@@ -23,7 +24,7 @@ const Login = () => {
 			}}
 		>
 			<div
-				className="flex flex-col justify-start items-center gap-48 bg-white
+				className="flex flex-col justify-start items-center gap-48 bg-[#1f222d57]
        bg-opacity-25 backdrop-blur-sm rounded-none drop-shadow-lg px-0 py-12 m-0 h-full w-full sm:px-16 sm:m-7 sm:rounded sm:w-[500px]"
 			>
 				<Image
@@ -33,29 +34,29 @@ const Login = () => {
 					src="dynamicLogo.svg"
 				/>
 				<div className="flex flex-col p-5 gap-4 items-center">
-					<TextInput
-						placeholder="Email"
+					<TextField
 						id="email"
-						startIcon={
+						placeholder="Email"
+						startAdornment={
 							<AlternateEmailRoundedIcon />
 						}
 					/>
-					<TextInput
+					<TextField
+						id="email"
 						placeholder="Password"
-						id="password"
-						startIcon={
-							<PasswordRoundedIcon />
-						}
-						endIcon={
-							<VisibilityRoundedIcon />
-						}
-						onEndButtonClick={
-							onClickShowPassword
-						}
 						type={
 							showPassword
 								? "text"
 								: "password"
+						}
+						startAdornment={
+							<PasswordRoundedIcon />
+						}
+						endAdornment={
+							<VisibilityRoundedIcon />
+						}
+						onEndIconClick={
+							onClickShowPassword
 						}
 					/>
 					<PrimaryButton>
