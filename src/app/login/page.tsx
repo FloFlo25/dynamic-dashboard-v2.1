@@ -5,7 +5,6 @@ import PasswordRoundedIcon from "@mui/icons-material/PasswordRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import React from "react";
 
-import TextInput from "../components/Inputs/TextInput";
 import Image from "next/image";
 import PrimaryButton from "../components/Inputs/Buttons/PrimaryButton";
 import TextField from "../components/Inputs/TextFields/TextField";
