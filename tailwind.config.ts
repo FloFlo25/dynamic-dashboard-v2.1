@@ -11,7 +11,8 @@ export default {
       },
     },
     borderRadius: {
-      DEFAULT: "14px"
+      DEFAULT: "14px",
+      "full": "9999px"
     },
     screens: {
       "sm": "640px",
