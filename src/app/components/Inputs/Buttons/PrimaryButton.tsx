@@ -1,6 +1,5 @@
-import Button, {
-	type ButtonProps,
-} from "@mui/material/Button/Button";
+import { ButtonProps } from "@mui/base/Button";
+import { Button } from "@mui/base/Button/Button";
 import React from "react";
 
 type Props = { test?: boolean } & ButtonProps;
@@ -8,8 +7,8 @@ type Props = { test?: boolean } & ButtonProps;
 const PrimaryButton = ({ test, ...props }: Props) => {
 	return (
 		<Button
-			variant="contained"
-			className="bg-[#ED1C24] normal-case rounded shadow-none hover:bg-[#8b0101] w-fit px-10 font-bold font-mono"
+			className={`bg-[#ED1C24] normal-case rounded text-white shadow-none hover:bg-[#8b0101] active:bg-[#640b0b] w-fit px-10 py-2
+			 font-bold font-mono`}
 		>
 			{props.children}
 		</Button>
