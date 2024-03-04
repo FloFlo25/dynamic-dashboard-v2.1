@@ -1,80 +1,58 @@
 "use client";
 
-import { Input } from "@mui/base";
-import { useForm } from "react-hook-form";
+import React from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
+import TextField from "../../components/Inputs/TextFields/TextField";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import PrimaryButton from "~/app/components/Inputs/Buttons/PrimaryButton";
 
-function LoginForm() {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm();
+const schema = z.object({
+	email: z.string().email(),
+	password: z.string().min(8),
+});
 
-	const onSubmit = (data) => {
-		// Handle login logic with email and password data
+type FormFields = z.infer<typeof schema>;
+
+export default function ForgotPassword() {
+	const formHook = useForm<FormFields>({
+		defaultValues: {
+			email: "test@email.com",
+		},
+		resolver: zodResolver(schema),
+	});
+
+	const onSubmit: SubmitHandler<FormFields> = (data) => {
 		console.log(data);
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<Input
-				{...register("email", {
-					required: true,
-					maxLength: 80,
-				})}
-				error={!!errors.email} // Set error prop based on validation
-				placeholder="Enter your email"
+		<form
+			className="tutorial gap-2"
+			onSubmit={formHook.handleSubmit(onSubmit)}
+		>
+			<TextField
+				placeholder="Email"
+				register={{
+					...formHook.register(
+						"email",
+						{
+							required: true,
+						},
+					),
+				}}
 			/>
-			<Input
-				{...register("password", {
-					required: true,
-					minLength: 6,
-				})}
-				error={!!errors.password}
-				placeholder="Enter your password"
-				type="password"
+			<TextField
+				placeholder="Password"
+				register={{
+					...formHook.register(
+						"password",
+					),
+				}}
 			/>
-			<button type="submit">Login</button>
+			<PrimaryButton type="submit">
+				Submit
+			</PrimaryButton>
 		</form>
 	);
 }
-
-export default LoginForm;
-
-// import React from "react";
-// import { type SubmitHandler, useForm } from "react-hook-form";
-// import TextField from "../../components/Inputs/TextFields/TextField";
-
-// type FormFields = {
-// 	email: string;
-// 	password: string;
-// };
-
-// export default function ForgotPassword() {
-// 	const { handleSubmit, register, formState } = useForm<FormFields>({
-// 		defaultValues: { email: "", password: "" },
-// 	});
-
-// 	const onSubmit: SubmitHandler<FormFields> = (data) => {
-// 		console.log(data);
-// 	};
-
-// 	return (
-// 		<form className="flex flex-col w-96">
-// 			<TextField
-// 				placeholder="Email"
-// 				{...register("email")}
-// 			/>
-// 			<TextField
-// 				placeholder="Password"
-// 				{...register("password")}
-// 			/>
-// 			<button
-// 				className="bg-red-500 rounded w-[120px] h-[32px]"
-// 				onClick={handleSubmit(onSubmit)}
-// 			>
-// 				Submit
-// 			</button>
-// 		</form>
-// 	);
-// }

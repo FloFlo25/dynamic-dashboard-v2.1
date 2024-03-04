@@ -1,12 +1,11 @@
 import { Input, type InputOwnProps } from "@mui/base";
-import { type RefCallBack, type UseFormRegisterReturn } from "react-hook-form";
+import { type UseFormRegisterReturn } from "react-hook-form";
 import { type slotPropsType } from "~/helper/types/TextFieldTypes";
 
 type Props = {
 	onEndIconClick?: (() => void) | undefined;
-	ref?: RefCallBack;
-} & UseFormRegisterReturn &
-	InputOwnProps;
+	register: UseFormRegisterReturn;
+} & InputOwnProps;
 
 const baseAdornmentClassNames =
 	"inline-flex  items-center justify-center text-white";
@@ -20,43 +19,56 @@ const slotProps: slotPropsType = {
 	},
 };
 
-const TextField = ({ onEndIconClick, ...props }: Props) => {
-	console.log(props);
-
+const TextField = ({ onEndIconClick, register, ...props }: Props) => {
 	return (
-		<Input
-			{...props}
-			slotProps={slotProps}
-			placeholder={props.placeholder ?? "Placeholder"}
-			startAdornment={
-				props.startAdornment ? (
-					<div
-						className={`${baseAdornmentClassNames} m-3`}
-					>
-						{
-							props.startAdornment
-						}
-					</div>
-				) : (
-					""
-				)
-			}
-			endAdornment={
-				props.endAdornment ? (
-					<div
-						onClick={(e) => {
-							e.preventDefault();
-							onEndIconClick?.();
-						}}
-						className={`${baseAdornmentClassNames} rounded-full my-1.5 mr-2 px-1.5 hover:bg-[#373c4e] hover:cursor-pointer active:bg-[#4b526b]`}
-					>
-						{props.endAdornment}
-					</div>
-				) : (
-					""
-				)
-			}
-		/>
+		<>
+			<Input
+				{...props}
+				{...register}
+				slotProps={slotProps}
+				placeholder={
+					props.placeholder ??
+					"Placeholder"
+				}
+				startAdornment={
+					props.startAdornment ? (
+						<div
+							className={`${baseAdornmentClassNames} m-3`}
+						>
+							{
+								props.startAdornment
+							}
+						</div>
+					) : (
+						""
+					)
+				}
+				endAdornment={
+					props.endAdornment ? (
+						<div
+							onClick={(
+								e,
+							) => {
+								e.preventDefault();
+								onEndIconClick?.();
+							}}
+							className={`${baseAdornmentClassNames} rounded-full my-1.5 mr-2 px-1.5 hover:bg-[#373c4e] hover:cursor-pointer active:bg-[#4b526b]`}
+						>
+							{
+								props.endAdornment
+							}
+						</div>
+					) : (
+						""
+					)
+				}
+			/>
+			{/* {formState.errors[`${name}`] && (
+				<div className="text-red-500">
+					erroor
+				</div>
+			)} */}
+		</>
 	);
 };
 
