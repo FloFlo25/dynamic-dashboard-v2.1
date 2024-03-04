@@ -1,39 +1,27 @@
-import {
-	Input,
-	type InputOwnProps,
-	type InputInputSlotPropsOverrides,
-	type InputOwnerState,
-	type InputRootSlotPropsOverrides,
-	type SlotComponentProps,
-} from "@mui/base";
+import { Input, type InputOwnProps } from "@mui/base";
+import { type RefCallBack, type UseFormRegisterReturn } from "react-hook-form";
+import { type slotPropsType } from "~/helper/types/TextFieldTypes";
 
-type slotPropsType = {
-	root?: SlotComponentProps<
-		"div",
-		InputRootSlotPropsOverrides,
-		InputOwnerState
-	>;
-	input?: SlotComponentProps<
-		"input",
-		InputInputSlotPropsOverrides,
-		InputOwnerState
-	>;
-};
-
-type Props = { onEndIconClick?: (() => void) | undefined } & InputOwnProps;
+type Props = {
+	onEndIconClick?: (() => void) | undefined;
+	ref?: RefCallBack;
+} & UseFormRegisterReturn &
+	InputOwnProps;
 
 const baseAdornmentClassNames =
 	"inline-flex  items-center justify-center text-white";
 
+const slotProps: slotPropsType = {
+	root: {
+		className: "focus-within:border-white w-full flex bg-[#1F222D] rounded hover:border-white border-solid border-2 border-black",
+	},
+	input: {
+		className: `bg-[#1F222D] focus:outline-none rounded text-white placeholder-[#C4C4C4] py-3 px-4 w-full`,
+	},
+};
+
 const TextField = ({ onEndIconClick, ...props }: Props) => {
-	const slotProps: slotPropsType = {
-		root: {
-			className: "focus-within:border-white w-full flex bg-[#1F222D] rounded hover:border-white border-solid border-2 border-black",
-		},
-		input: {
-			className: `bg-[#1F222D] focus:outline-none rounded text-white placeholder-[#C4C4C4] py-3 px-4 w-full`,
-		},
-	};
+	console.log(props);
 
 	return (
 		<Input

@@ -5,9 +5,9 @@ import PasswordRoundedIcon from "@mui/icons-material/PasswordRounded";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import React from "react";
 
-import TextInput from "../components/Inputs/TextInput";
 import Image from "next/image";
-import PrimaryButton from "../components/Inputs/Buttons/PrimaryButton";
+import PrimaryButton from "../../components/Inputs/Buttons/PrimaryButton";
+import TextField from "../../components/Inputs/TextFields/TextField";
 
 const Register = () => {
 	const [showPassword, setShowPassword] = React.useState(false);
@@ -33,23 +33,23 @@ const Register = () => {
 					src="dynamicLogo.svg"
 				/>
 				<div className="flex flex-col p-5 gap-4 items-center">
-					<TextInput
+					<TextField
 						placeholder="Email"
 						id="email"
-						startIcon={
+						startAdornment={
 							<AlternateEmailRoundedIcon />
 						}
 					/>
-					<TextInput
+					<TextField
 						placeholder="Password"
 						id="password"
-						startIcon={
+						startAdornment={
 							<PasswordRoundedIcon />
 						}
-						endIcon={
+						endAdornment={
 							<VisibilityRoundedIcon />
 						}
-						onEndButtonClick={
+						onEndIconClick={
 							onClickShowPassword
 						}
 						type={

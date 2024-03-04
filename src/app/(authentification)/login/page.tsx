@@ -7,8 +7,9 @@ import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import React from "react";
 
 import Image from "next/image";
-import PrimaryButton from "../components/Inputs/Buttons/PrimaryButton";
-import TextField from "../components/Inputs/TextFields/TextField";
+import PrimaryButton from "../../components/Inputs/Buttons/PrimaryButton";
+import TextField from "../../components/Inputs/TextFields/TextField";
+import Link from "next/link";
 
 const Login = () => {
 	const [showPassword, setShowPassword] = React.useState(false);
@@ -63,6 +64,10 @@ const Login = () => {
 							onClickShowPassword
 						}
 					/>
+					<Link href="/forgot-password">
+						Forgot your
+						password?
+					</Link>
 					<PrimaryButton>
 						Login
 					</PrimaryButton>
