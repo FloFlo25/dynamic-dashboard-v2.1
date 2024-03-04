@@ -37,10 +37,14 @@ export default function ForgotPassword() {
 					...formHook.register(
 						"email",
 						{
-							required: true,
+							required: "This is required",
 						},
 					),
 				}}
+				error={
+					formHook.formState.errors
+						.email?.message
+				}
 			/>
 			<TextField
 				placeholder="Password"

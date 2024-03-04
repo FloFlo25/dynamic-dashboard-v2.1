@@ -4,6 +4,7 @@ import { type slotPropsType } from "~/helper/types/TextFieldTypes";
 
 type Props = {
 	onEndIconClick?: (() => void) | undefined;
+	error: string;
 	register: UseFormRegisterReturn;
 } & InputOwnProps;
 
@@ -19,7 +20,7 @@ const slotProps: slotPropsType = {
 	},
 };
 
-const TextField = ({ onEndIconClick, register, ...props }: Props) => {
+const TextField = ({ onEndIconClick, error, register, ...props }: Props) => {
 	return (
 		<>
 			<Input
@@ -63,11 +64,11 @@ const TextField = ({ onEndIconClick, register, ...props }: Props) => {
 					)
 				}
 			/>
-			{/* {formState.errors[`${name}`] && (
+			{error && (
 				<div className="text-red-500">
-					erroor
+					{error}
 				</div>
-			)} */}
+			)}
 		</>
 	);
 };
