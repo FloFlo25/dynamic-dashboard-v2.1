@@ -46,6 +46,7 @@ const Login = () => {
 				console.log(response);
 				console.log(localStorage);
 				if (
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 					response.data.msg ==
 					"invalid_credentials"
 				) {
