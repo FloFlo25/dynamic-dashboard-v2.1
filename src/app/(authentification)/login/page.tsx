@@ -10,12 +10,54 @@ import Image from "next/image";
 import PrimaryButton from "../../components/Inputs/Buttons/PrimaryButton";
 import TextField from "../../components/Inputs/TextFields/TextField";
 import Link from "next/link";
+import { z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+
+const schema = z.object({
+	email: z.string().email(),
+	password: z.string().min(8),
+});
+
+type FormFields = z.infer<typeof schema>;
 
 const Login = () => {
+	const router = useRouter();
 	const [showPassword, setShowPassword] = React.useState(false);
+
+	const formHook = useForm<FormFields>({
+		resolver: zodResolver(schema),
+	});
+
+	const URL = "https://test.dynamicapp.ro:5999/auth/login";
 
 	const onClickShowPassword = () =>
 		setShowPassword((prevState) => !prevState);
+
+	const onSubmit: SubmitHandler<FormFields> = (data) => {
+		axios.post(URL, {
+			email: data.email,
+			password: data.password,
+			lang: "ro",
+		})
+			.then((response) => {
+				console.log(response);
+				console.log(localStorage);
+				if (
+					response.data.msg ==
+					"invalid_credentials"
+				) {
+					return;
+				}
+
+				router.push("/test");
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
 
 	return (
 		<div
@@ -34,10 +76,30 @@ const Login = () => {
 					height={60}
 					src="dynamicLogo.svg"
 				/>
-				<div className="flex flex-col p-5 gap-4 items-center">
+				<form
+					className="flex flex-col p-5 gap-4 items-center"
+					onSubmit={formHook.handleSubmit(
+						onSubmit,
+					)}
+				>
 					<TextField
 						id="email"
 						placeholder="Email"
+						register={{
+							...formHook.register(
+								"email",
+								{
+									required: "This is required",
+								},
+							),
+						}}
+						errorMessage={
+							formHook
+								.formState
+								.errors
+								.email
+								?.message
+						}
 						startAdornment={
 							<AlternateEmailRoundedIcon />
 						}
@@ -45,6 +107,21 @@ const Login = () => {
 					<TextField
 						id="email"
 						placeholder="Password"
+						register={{
+							...formHook.register(
+								"password",
+								{
+									required: "This is required",
+								},
+							),
+						}}
+						errorMessage={
+							formHook
+								.formState
+								.errors
+								.password
+								?.message
+						}
 						type={
 							showPassword
 								? "text"
@@ -68,10 +145,10 @@ const Login = () => {
 						Forgot your
 						password?
 					</Link>
-					<PrimaryButton>
+					<PrimaryButton type="submit">
 						Login
 					</PrimaryButton>
-				</div>
+				</form>
 			</div>
 		</div>
 	);

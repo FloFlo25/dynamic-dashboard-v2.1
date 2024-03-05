@@ -41,7 +41,7 @@ export default function ForgotPassword() {
 						},
 					),
 				}}
-				error={
+				errorMessage={
 					formHook.formState.errors
 						.email?.message
 				}
@@ -53,6 +53,10 @@ export default function ForgotPassword() {
 						"password",
 					),
 				}}
+				errorMessage={
+					formHook.formState.errors
+						.password?.message
+				}
 			/>
 			<PrimaryButton type="submit">
 				Submit
