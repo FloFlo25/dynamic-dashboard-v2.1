@@ -11,7 +11,7 @@ import PrimaryButton from "../../components/Inputs/Buttons/PrimaryButton";
 import TextField from "../../components/Inputs/TextFields/TextField";
 import Link from "next/link";
 import { z } from "zod";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -142,7 +142,12 @@ const Login = () => {
 							onClickShowPassword
 						}
 					/>
-					<Link href="/forgot-password">
+					<Link
+						href="/forgot-password"
+						className={
+							"text-red-600 font-bold underline"
+						}
+					>
 						Forgot your
 						password?
 					</Link>
