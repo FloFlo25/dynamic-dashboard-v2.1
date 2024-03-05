@@ -32,7 +32,7 @@ const Register = () => {
 					height={60}
 					src="dynamicLogo.svg"
 				/>
-				<div className="flex flex-col p-5 gap-4 items-center">
+				{/* <div className="flex flex-col p-5 gap-4 items-center">
 					<TextField
 						placeholder="Email"
 						id="email"
@@ -61,7 +61,7 @@ const Register = () => {
 					<PrimaryButton>
 						Register
 					</PrimaryButton>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
