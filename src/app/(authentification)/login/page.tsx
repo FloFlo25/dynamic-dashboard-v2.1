@@ -2,20 +2,20 @@
 
 import AlternateEmailRoundedIcon from "@mui/icons-material/AlternateEmailRounded";
 import PasswordRoundedIcon from "@mui/icons-material/PasswordRounded";
-import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
+import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import React from "react";
 
-import Image from "next/image";
-import PrimaryButton from "../../components/Inputs/Buttons/PrimaryButton";
-import TextField from "../../components/Inputs/TextFields/TextField";
-import Link from "next/link";
-import { z } from "zod";
-import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { loginData } from "~/helper/types/loginTypes";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { z } from "zod";
+import TextField from "~/app/_components/Inputs/TextFields/TextField";
+import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
+import AuthLayout from "../AuthLayout";
 
 const schema = z.object({
 	email: z.string().email(),
@@ -60,16 +60,8 @@ const Login = () => {
 	};
 
 	return (
-		<div
-			className="flex flex-col items-start gap-6 bg-cover bg-center h-full"
-			style={{
-				backgroundImage: `url("https://dynamicstudio.ro/wp-content/uploads/2022/11/Burning-Cardio.jpg")`,
-			}}
-		>
-			<div
-				className="flex flex-col justify-start items-center gap-48 bg-[#1f222d57]
-       bg-opacity-25 backdrop-blur-sm rounded-none drop-shadow-lg px-0 py-12 m-0 h-full w-full sm:px-16 sm:m-7 sm:rounded sm:w-[500px]"
-			>
+		<AuthLayout>
+			<>
 				<Image
 					alt="Dynamic Logo"
 					width={260}
@@ -154,8 +146,8 @@ const Login = () => {
 						Login
 					</PrimaryButton>
 				</form>
-			</div>
-		</div>
+			</>
+		</AuthLayout>
 	);
 };
 
