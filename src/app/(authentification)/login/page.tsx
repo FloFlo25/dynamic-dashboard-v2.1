@@ -34,20 +34,19 @@ const Login = () => {
 
 	const URL = "https://test.dynamicapp.ro:5999/auth/login";
 
-	const onClickShowPassword = () =>
-		setShowPassword((prevState) => !prevState);
+	const onClickShowPassword = () => setShowPassword((prevState) => !prevState);
 
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
-		axios.post(URL, {
-			email: data.email,
-			password: data.password,
-			lang: "ro",
-		})
+		axios
+			.post(URL, {
+				email: data.email,
+				password: data.password,
+				lang: "ro",
+			})
 			.then((response) => {
 				if (
 					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-					response.data.msg ==
-					"invalid_credentials"
+					response.data.msg == "invalid_credentials"
 				) {
 					return;
 				}
@@ -70,58 +69,30 @@ const Login = () => {
 				/>
 				<form
 					className="flex flex-col p-5 gap-4 items-center"
-					onSubmit={formHook.handleSubmit(
-						onSubmit,
-					)}
+					onSubmit={formHook.handleSubmit(onSubmit)}
 				>
 					<TextField
 						id="email"
 						placeholder="Email"
 						register={{
-							...formHook.register(
-								"email",
-								{
-									required: "This is required",
-								},
-							),
+							...formHook.register("email", {
+								required: "This is required",
+							}),
 						}}
-						errorMessage={
-							formHook
-								.formState
-								.errors
-								.email
-								?.message
-						}
-						startAdornment={
-							<AlternateEmailRoundedIcon />
-						}
+						errorMessage={formHook.formState.errors.email?.message}
+						startAdornment={<AlternateEmailRoundedIcon />}
 					/>
 					<TextField
 						id="email"
 						placeholder="Password"
 						register={{
-							...formHook.register(
-								"password",
-								{
-									required: "This is required",
-								},
-							),
+							...formHook.register("password", {
+								required: "This is required",
+							}),
 						}}
-						errorMessage={
-							formHook
-								.formState
-								.errors
-								.password
-								?.message
-						}
-						type={
-							showPassword
-								? "text"
-								: "password"
-						}
-						startAdornment={
-							<PasswordRoundedIcon />
-						}
+						errorMessage={formHook.formState.errors.password?.message}
+						type={showPassword ? "text" : "password"}
+						startAdornment={<PasswordRoundedIcon />}
 						endAdornment={
 							showPassword ? (
 								<VisibilityOffRoundedIcon />
@@ -129,22 +100,15 @@ const Login = () => {
 								<VisibilityRoundedIcon />
 							)
 						}
-						onEndIconClick={
-							onClickShowPassword
-						}
+						onEndIconClick={onClickShowPassword}
 					/>
 					<Link
 						href="/forgot-password"
-						className={
-							"text-red-600 font-bold underline"
-						}
+						className={"text-red-600 font-bold underline"}
 					>
-						Forgot your
-						password?
+						Forgot your password?
 					</Link>
-					<PrimaryButton type="submit">
-						Login
-					</PrimaryButton>
+					<PrimaryButton type="submit">Login</PrimaryButton>
 				</form>
 			</>
 		</AuthLayout>
