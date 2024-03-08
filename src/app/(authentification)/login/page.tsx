@@ -16,8 +16,9 @@ import { z } from "zod";
 import TextField from "~/app/_components/Inputs/TextFields/TextField";
 import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import AuthLayout from "../AuthLayout";
+import generateZodSchemas from "~/helper/functions/generateZodSchemas";
 
-const schema = z.object({
+const { schema, fieldNames } = generateZodSchemas({
 	email: z.string().email(),
 	password: z.string().min(8),
 });
@@ -51,7 +52,10 @@ const Login = () => {
 					return;
 				}
 
-				router.push("/test");
+				//TODO: Talk with Eugen
+				// router.push("/test");
+
+				console.log(response.data);
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -73,24 +77,14 @@ const Login = () => {
 				>
 					<TextField
 						id="email"
+						name={fieldNames.email}
 						placeholder="Email"
-						register={{
-							...formHook.register("email", {
-								required: "This is required",
-							}),
-						}}
-						errorMessage={formHook.formState.errors.email?.message}
 						startAdornment={<AlternateEmailRoundedIcon />}
 					/>
 					<TextField
-						id="email"
+						id="password"
+						name={fieldNames.password}
 						placeholder="Password"
-						register={{
-							...formHook.register("password", {
-								required: "This is required",
-							}),
-						}}
-						errorMessage={formHook.formState.errors.password?.message}
 						type={showPassword ? "text" : "password"}
 						startAdornment={<PasswordRoundedIcon />}
 						endAdornment={
