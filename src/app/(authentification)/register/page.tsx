@@ -7,7 +7,6 @@ import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import React from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -15,12 +14,14 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import TextField from "~/app/_components/Inputs/TextFields/TextField";
-import AuthLayout from "../AuthLayout";
+import { DatePicker } from "~/components/ui/datepicker";
 import generateZodSchemas from "~/helper/functions/generateZodSchemas";
+import AuthLayout from "../AuthLayout";
 
-const {schema, fieldNames} = generateZodSchemas({
+const { schema, fieldNames } = generateZodSchemas({
 	email: z.string().email(),
 	password: z.string().min(8),
+	birthday: z.date().max(new Date()),
 });
 
 type FormFields = z.infer<typeof schema>;
@@ -38,25 +39,7 @@ const Register = () => {
 	const onClickShowPassword = () => setShowPassword((prevState) => !prevState);
 
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
-		axios
-			.post(URL, {
-				email: data.email,
-				password: data.password,
-				lang: "ro",
-			})
-			.then((response) => {
-				if (
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-					response.data.msg == "invalid_credentials"
-				) {
-					return;
-				}
-
-				router.push("/test");
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+		console.log(data);
 	};
 
 	return (
@@ -73,14 +56,24 @@ const Register = () => {
 					onSubmit={formHook.handleSubmit(onSubmit)}
 				>
 					<TextField
-						id="email"
+						id={fieldNames.email}
 						name={fieldNames.email}
 						formHook={formHook}
 						placeholder="Email"
 						startAdornment={<AlternateEmailRoundedIcon />}
 					/>
+					{/* <TextField
+						id={fieldNames.birthday}
+						name={fieldNames.birthday}
+						formHook={formHook}
+						type="date"
+						placeholder="Birthday"
+						startAdornment={<CakeRoundedIcon />}
+						endAdornment={<CakeRoundedIcon />}
+					/> */}
+					<DatePicker placeholder="Birthday" />
 					<TextField
-						id="email"
+						id={fieldNames.password}
 						name={fieldNames.password}
 						placeholder="Password"
 						formHook={formHook}
