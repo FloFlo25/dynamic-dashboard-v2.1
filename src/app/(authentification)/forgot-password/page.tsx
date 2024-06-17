@@ -2,23 +2,23 @@
 
 import React from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import TextField from "../../components/Inputs/TextFields/TextField";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import PrimaryButton from "~/app/components/Inputs/Buttons/PrimaryButton";
+import TextField from "~/app/_components/Inputs/TextFields/TextField";
+import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
+import AuthLayout from "../AuthLayout";
+import generateZodSchemas from "~/helper/functions/generateZodSchemas";
+import AlternateEmailRoundedIcon from "@mui/icons-material/AlternateEmailRounded";
+import DynamicLogo from "~/app/_components/Others/DynamicLogo";
 
-const schema = z.object({
+const { schema, fieldNames } = generateZodSchemas({
 	email: z.string().email(),
-	password: z.string().min(8),
 });
 
 type FormFields = z.infer<typeof schema>;
 
 export default function ForgotPassword() {
 	const formHook = useForm<FormFields>({
-		defaultValues: {
-			email: "test@email.com",
-		},
 		resolver: zodResolver(schema),
 	});
 
@@ -27,40 +27,27 @@ export default function ForgotPassword() {
 	};
 
 	return (
-		<form
-			className="tutorial gap-2"
-			onSubmit={formHook.handleSubmit(onSubmit)}
-		>
-			<TextField
-				placeholder="Email"
-				register={{
-					...formHook.register(
-						"email",
-						{
-							required: "This is required",
-						},
-					),
-				}}
-				errorMessage={
-					formHook.formState.errors
-						.email?.message
-				}
-			/>
-			<TextField
-				placeholder="Password"
-				register={{
-					...formHook.register(
-						"password",
-					),
-				}}
-				errorMessage={
-					formHook.formState.errors
-						.password?.message
-				}
-			/>
-			<PrimaryButton type="submit">
-				Submit
-			</PrimaryButton>
-		</form>
+		<AuthLayout>
+			<DynamicLogo />
+			<div className="flex flex-col items-center">
+				<h1 className="text-[32px]">Forgot password?</h1>
+				<p className="text-black opacity-40 text-center text-[20px]">
+					No worries, we’ll send you the reset instrutions on your email.
+				</p>
+			</div>
+			<form
+				className="tutorial gap-2 flex flex-col items-center"
+				onSubmit={formHook.handleSubmit(onSubmit)}
+			>
+				<TextField
+					id={fieldNames.email}
+					name={fieldNames.email}
+					formHook={formHook}
+					placeholder="Email"
+					startAdornment={<AlternateEmailRoundedIcon />}
+				/>
+				<PrimaryButton type="submit">Submit</PrimaryButton>
+			</form>
+		</AuthLayout>
 	);
 }

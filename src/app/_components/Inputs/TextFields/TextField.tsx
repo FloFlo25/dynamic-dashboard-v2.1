@@ -41,6 +41,7 @@ const TextField = ({ onEndIconClick, name, formHook, ...props }: Props) => {
 						""
 					)
 				}
+				style={{ color: "white" }}
 				endAdornment={
 					props.endAdornment ? (
 						<div

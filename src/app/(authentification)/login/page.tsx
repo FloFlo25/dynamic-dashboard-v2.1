@@ -17,6 +17,8 @@ import TextField from "~/app/_components/Inputs/TextFields/TextField";
 import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import AuthLayout from "../AuthLayout";
 import generateZodSchemas from "~/helper/functions/generateZodSchemas";
+import { CheckboxInput } from "~/app/_components/Checbox";
+import DynamicLogo from "~/app/_components/Others/DynamicLogo";
 
 const { schema, fieldNames } = generateZodSchemas({
 	email: z.string().email(),
@@ -38,6 +40,7 @@ const Login = () => {
 	const onClickShowPassword = () => setShowPassword((prevState) => !prevState);
 
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
+		console.log(data);
 		axios
 			.post(URL, {
 				email: data.email,
@@ -65,12 +68,7 @@ const Login = () => {
 	return (
 		<AuthLayout>
 			<>
-				<Image
-					alt="Dynamic Logo"
-					width={260}
-					height={60}
-					src="dynamicLogo.svg"
-				/>
+				<DynamicLogo />
 				<form
 					className="flex flex-col p-5 gap-4 items-center"
 					onSubmit={formHook.handleSubmit(onSubmit)}
@@ -79,19 +77,21 @@ const Login = () => {
 						id="email"
 						name={fieldNames.email}
 						placeholder="Email"
-						startAdornment={<AlternateEmailRoundedIcon />}
+						startAdornment={
+							<AlternateEmailRoundedIcon style={{ color: "white" }} />
+						}
 					/>
 					<TextField
 						id="password"
 						name={fieldNames.password}
 						placeholder="Password"
 						type={showPassword ? "text" : "password"}
-						startAdornment={<PasswordRoundedIcon />}
+						startAdornment={<PasswordRoundedIcon style={{ color: "white" }} />}
 						endAdornment={
 							showPassword ? (
-								<VisibilityOffRoundedIcon />
+								<VisibilityOffRoundedIcon style={{ color: "white" }} />
 							) : (
-								<VisibilityRoundedIcon />
+								<VisibilityRoundedIcon style={{ color: "white" }} />
 							)
 						}
 						onEndIconClick={onClickShowPassword}
@@ -103,6 +103,7 @@ const Login = () => {
 						Forgot your password?
 					</Link>
 					<PrimaryButton type="submit">Login</PrimaryButton>
+					<CheckboxInput text="Remember me" />
 				</form>
 			</>
 		</AuthLayout>

@@ -17,9 +17,6 @@ const config = {
         "2xl": "1400px",
       },
     },
-    colors: {
-      primary: "#1F222D"
-    },
     extend: {
       borderRadius: {
         DEFAULT: "14px",
