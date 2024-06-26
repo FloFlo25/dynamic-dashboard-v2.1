@@ -10,7 +10,7 @@ const AuthLayout = ({ children }: Props) => {
 		>
 			<div
 				className="flex flex-col justify-start items-center gap-48 bg-[#94949457]
-       bg-opacity-25 backdrop-blur-sm rounded-none drop-shadow-lg px-0 py-12 m-0 h-full w-full sm:px-16 sm:m-7 sm:rounded sm:w-[500px]"
+       bg-opacity-25 backdrop-blur-sm rounded-none drop-shadow-lg px-16 py-16 m-0 h-full w-full sm:px-16 sm:m-7 sm:rounded sm:w-[500px]"
 			>
 				{children}
 			</div>

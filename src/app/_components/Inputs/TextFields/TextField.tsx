@@ -15,10 +15,10 @@ const baseAdornmentClassNames =
 const slotProps: slotPropsType = {
 	root: {
 		className:
-			"focus-within:border-white w-full flex bg-[#1F222D] rounded hover:border-white border-solid border-2 border-black",
+			"focus-within:border-white w-full flex bg-[#ffffff21] rounded hover:border-white border-solid border-2 border-[#ffffff2f]",
 	},
 	input: {
-		className: `bg-[#1F222D] focus:outline-none rounded text-white placeholder-[#C4C4C4] py-3 px-4 w-full`,
+		className: `bg-transparent focus:outline-none rounded text-white placeholder-[#ffffff7c] py-3 px-4 w-full`,
 	},
 };
 

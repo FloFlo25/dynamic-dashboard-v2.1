@@ -10,6 +10,7 @@ import AuthLayout from "../AuthLayout";
 import generateZodSchemas from "~/helper/functions/generateZodSchemas";
 import AlternateEmailRoundedIcon from "@mui/icons-material/AlternateEmailRounded";
 import DynamicLogo from "~/app/_components/Others/DynamicLogo";
+import Link from "next/link";
 
 const { schema, fieldNames } = generateZodSchemas({
 	email: z.string().email(),
@@ -47,6 +48,9 @@ export default function ForgotPassword() {
 					startAdornment={<AlternateEmailRoundedIcon />}
 				/>
 				<PrimaryButton type="submit">Submit</PrimaryButton>
+				<PrimaryButton style={{ background: "transparent" }}>
+					<Link href="/login"> ← Back</Link>
+				</PrimaryButton>
 			</form>
 		</AuthLayout>
 	);

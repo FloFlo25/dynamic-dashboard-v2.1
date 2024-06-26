@@ -105,6 +105,15 @@ const Login = () => {
 					<PrimaryButton type="submit">Login</PrimaryButton>
 					<CheckboxInput text="Remember me" />
 				</form>
+				<p style={{ color: "white" }}>
+					You don’t have an account?
+					<Link
+						href="/register"
+						className={"text-red-600 font-bold underline"}
+					>
+						Register
+					</Link>
+				</p>
 			</>
 		</AuthLayout>
 	);
