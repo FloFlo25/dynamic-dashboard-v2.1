@@ -18,7 +18,6 @@ import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import AuthLayout from "../AuthLayout";
 import generateZodSchemas from "~/helper/functions/generateZodSchemas";
 import { CheckboxInput } from "~/app/_components/Checbox";
-import DynamicLogo from "~/app/_components/Others/DynamicLogo";
 
 const { schema, fieldNames } = generateZodSchemas({
 	email: z.string().email(),
@@ -67,8 +66,7 @@ const Login = () => {
 
 	return (
 		<AuthLayout>
-			<>
-				<DynamicLogo />
+			<div>
 				<form
 					className="flex flex-col p-5 gap-4 items-center"
 					onSubmit={formHook.handleSubmit(onSubmit)}
@@ -107,14 +105,11 @@ const Login = () => {
 				</form>
 				<p style={{ color: "white" }}>
 					You don’t have an account?
-					<Link
-						href="/register"
-						className={"text-red-600 font-bold underline"}
-					>
+					<Link href="/register" className={"text-red-600 font-bold underline"}>
 						Register
 					</Link>
 				</p>
-			</>
+			</div>
 		</AuthLayout>
 	);
 };

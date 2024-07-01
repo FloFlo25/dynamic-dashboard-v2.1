@@ -45,12 +45,6 @@ const Register = () => {
 	return (
 		<AuthLayout>
 			<>
-				<Image
-					alt="Dynamic Logo"
-					width={260}
-					height={60}
-					src="dynamicLogo.svg"
-				/>
 				<form
 					className="flex flex-col p-5 gap-4 items-center"
 					onSubmit={formHook.handleSubmit(onSubmit)}

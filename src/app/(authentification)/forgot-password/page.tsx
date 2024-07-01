@@ -29,29 +29,30 @@ export default function ForgotPassword() {
 
 	return (
 		<AuthLayout>
-			<DynamicLogo />
-			<div className="flex flex-col items-center">
-				<h1 className="text-[32px]">Forgot password?</h1>
-				<p className="text-black opacity-40 text-center text-[20px]">
-					No worries, we’ll send you the reset instrutions on your email.
-				</p>
+			<div>
+				<div className="flex flex-col items-center">
+					<h1 className="text-[32px]">Forgot password?</h1>
+					<p className="text-black opacity-40 text-center text-[20px]">
+						No worries, we’ll send you the reset instrutions on your email.
+					</p>
+				</div>
+				<form
+					className="tutorial gap-2 flex flex-col items-center"
+					onSubmit={formHook.handleSubmit(onSubmit)}
+				>
+					<TextField
+						id={fieldNames.email}
+						name={fieldNames.email}
+						formHook={formHook}
+						placeholder="Email"
+						startAdornment={<AlternateEmailRoundedIcon />}
+					/>
+					<PrimaryButton type="submit">Submit</PrimaryButton>
+					<PrimaryButton style={{ background: "transparent" }}>
+						<Link href="/login"> ← Back</Link>
+					</PrimaryButton>
+				</form>
 			</div>
-			<form
-				className="tutorial gap-2 flex flex-col items-center"
-				onSubmit={formHook.handleSubmit(onSubmit)}
-			>
-				<TextField
-					id={fieldNames.email}
-					name={fieldNames.email}
-					formHook={formHook}
-					placeholder="Email"
-					startAdornment={<AlternateEmailRoundedIcon />}
-				/>
-				<PrimaryButton type="submit">Submit</PrimaryButton>
-				<PrimaryButton style={{ background: "transparent" }}>
-					<Link href="/login"> ← Back</Link>
-				</PrimaryButton>
-			</form>
 		</AuthLayout>
 	);
 }
