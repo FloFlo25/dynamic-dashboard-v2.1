@@ -31,7 +31,7 @@ type DropdownProps<
 	items: ValueTextItem[];
 };
 
-const DropDown = <
+const Dropdown = <
 	TFieldValues extends FieldValues = FieldValues,
 	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
@@ -78,4 +78,4 @@ const DropDown = <
 	);
 };
 
-export default DropDown;
+export default Dropdown;

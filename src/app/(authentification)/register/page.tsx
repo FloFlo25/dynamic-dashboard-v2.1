@@ -1,29 +1,19 @@
 "use client";
 
-import React from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "~/components/ui/button";
-import BadgeIcon from "/public/icons/Badge.svg";
 
-import {
-	Form,
-	FormControl,
-	FormDescription,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "~/components/ui/form";
-import { Input } from "~/components/ui/input";
-import AuthLayout from "../AuthLayout";
-import TextField from "~/app/_components/Inputs/TextField";
-import Image from "next/image";
-import DropDown from "~/app/_components/Inputs/DropDown";
+import Link from "next/link";
 import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import DatePicker from "~/app/_components/Inputs/DatePicker";
+import Dropdown from "~/app/_components/Inputs/DropDown";
+import TextField from "~/app/_components/Inputs/TextField";
+import {
+	Form
+} from "~/components/ui/form";
+import AuthLayout from "../AuthLayout";
 
 const FormSchema = z.object({
 	firstName: z.string().min(2),
@@ -59,7 +49,10 @@ const Register = () => {
 	return (
 		<AuthLayout>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="space-y-6 w-full text-center"
+				>
 					<TextField
 						control={form.control}
 						name="firstName"
@@ -75,12 +68,12 @@ const Register = () => {
 
 					<div className="flex gap-2">
 						<DatePicker
-						control={form.control}
-						name="birthday"
-						placeholder="Birthday"
-						startIconPath="icons/Birthday.svg"
+							control={form.control}
+							name="birthday"
+							placeholder="Birthday"
+							startIconPath="icons/Birthday.svg"
 						/>
-						<DropDown
+						<Dropdown
 							control={form.control}
 							name="gender"
 							placeholder="Gender"
@@ -115,7 +108,13 @@ const Register = () => {
 						placeholder="Confirm password"
 						startIconPath="icons/Password.svg"
 					/>
-					<PrimaryButton type="submit">Submit</PrimaryButton>
+					<PrimaryButton type="submit">Register</PrimaryButton>
+					<p style={{ color: "white" }}>
+						{"You already have an account? "}
+						<Link href="/login" className={"text-red-600 font-bold underline"}>
+							Login
+						</Link>
+					</p>
 				</form>
 			</Form>
 		</AuthLayout>

@@ -9,7 +9,11 @@ import {
 } from "~/components/ui/popover";
 import { Button } from "~/components/ui/button";
 import { Calendar } from "~/components/ui/calendar";
-import { ControllerProps, FieldPath, FieldValues } from "react-hook-form";
+import {
+	type ControllerProps,
+	type FieldPath,
+	type FieldValues,
+} from "react-hook-form";
 import {
 	FormControl,
 	FormField,
@@ -44,7 +48,7 @@ const DatePicker = <
 							<FormControl>
 								<Button
 									variant={"outline"}
-									className="rounded-md py-0 px-2 text-sm justify-start flex gap-2"
+									className="rounded-md py-0 px-2 w-full text-sm justify-start flex gap-2"
 								>
 									{startIconPath ? (
 										<Image
@@ -66,10 +70,8 @@ const DatePicker = <
 						</PopoverTrigger>
 						<PopoverContent className="w-auto p-0">
 							<Calendar
-								mode="single"
 								selected={field.value}
 								onSelect={field.onChange}
-								initialFocus
 							/>
 						</PopoverContent>
 						<FormMessage className="absolute top-[30px]" />
