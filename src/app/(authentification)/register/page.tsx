@@ -19,9 +19,11 @@ import {
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import AuthLayout from "../AuthLayout";
-import TextField from "~/app/_components/Inputs/TextFields";
+import TextField from "~/app/_components/Inputs/TextField";
 import Image from "next/image";
 import DropDown from "~/app/_components/Inputs/DropDown";
+import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
+import DatePicker from "~/app/_components/Inputs/DatePicker";
 
 const FormSchema = z.object({
 	firstName: z.string().min(2),
@@ -72,11 +74,11 @@ const Register = () => {
 					/>
 
 					<div className="flex gap-2">
-						<TextField
-							control={form.control}
-							name="birthday"
-							placeholder="Birthday"
-							startIconPath="icons/Birthday.svg"
+						<DatePicker
+						control={form.control}
+						name="birthday"
+						placeholder="Birthday"
+						startIconPath="icons/Birthday.svg"
 						/>
 						<DropDown
 							control={form.control}
@@ -113,7 +115,7 @@ const Register = () => {
 						placeholder="Confirm password"
 						startIconPath="icons/Password.svg"
 					/>
-					<Button type="submit">Submit</Button>
+					<PrimaryButton type="submit">Submit</PrimaryButton>
 				</form>
 			</Form>
 		</AuthLayout>

@@ -1,14 +1,14 @@
 import Image from "next/image";
 import {
-    type ControllerProps,
-    type FieldPath,
-    type FieldValues,
+	type ControllerProps,
+	type FieldPath,
+	type FieldValues,
 } from "react-hook-form";
 import {
-    FormControl,
-    FormField,
-    FormItem,
-    FormMessage,
+	FormControl,
+	FormField,
+	FormItem,
+	FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 
@@ -52,7 +52,7 @@ const TextField = <
 							/>
 						</div>
 					</FormControl>
-					<FormMessage />
+					<FormMessage className="absolute top-[30px]" />
 				</FormItem>
 			)}
 		/>

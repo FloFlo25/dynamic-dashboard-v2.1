@@ -41,42 +41,40 @@ const DropDown = <
 	...dropdownProps
 }: DropdownProps<TFieldValues, TName>) => {
 	return (
-		<div>
-			<FormField
-				{...dropdownProps}
-				render={({ field }) => (
-					<FormItem>
-						<Select onValueChange={field.onChange} defaultValue={field.value}>
-							<FormControl>
-								<div className="flex bg-white rounded-md px-2 w-full">
-									{startIconPath ? (
-										<Image
-											src={startIconPath}
-											alt={startIconPath}
-											width={24}
-											height={24}
-										/>
-									) : (
-										<></>
-									)}
-									<SelectTrigger>
-										<SelectValue placeholder={placeholder} />
-									</SelectTrigger>
-								</div>
-							</FormControl>
-							<SelectContent>
-								{items.map((item) => (
-									<SelectItem key={item.value} value={item.value}>
-										{item.text}
-									</SelectItem>
-								))}
-							</SelectContent>
-						</Select>
-						<FormMessage />
-					</FormItem>
-				)}
-			/>
-		</div>
+		<FormField
+			{...dropdownProps}
+			render={({ field }) => (
+				<FormItem>
+					<Select onValueChange={field.onChange} defaultValue={field.value}>
+						<FormControl>
+							<div className="flex bg-white rounded-md px-2 w-full">
+								{startIconPath ? (
+									<Image
+										src={startIconPath}
+										alt={startIconPath}
+										width={24}
+										height={24}
+									/>
+								) : (
+									<></>
+								)}
+								<SelectTrigger>
+									<SelectValue placeholder={placeholder} />
+								</SelectTrigger>
+							</div>
+						</FormControl>
+						<SelectContent>
+							{items.map((item) => (
+								<SelectItem key={item.value} value={item.value}>
+									{item.text}
+								</SelectItem>
+							))}
+						</SelectContent>
+					</Select>
+					<FormMessage className="absolute top-[30px]" />
+				</FormItem>
+			)}
+		/>
 	);
 };
 
