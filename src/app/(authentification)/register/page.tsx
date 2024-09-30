@@ -1,20 +1,13 @@
 "use client";
 
-import AlternateEmailRoundedIcon from "@mui/icons-material/AlternateEmailRounded";
-import PasswordRoundedIcon from "@mui/icons-material/PasswordRounded";
-import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
-import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import React from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
-import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
-import TextField from "~/app/_components/Inputs/TextFields/TextField";
-import { DatePicker } from "~/components/ui/datepicker";
-import generateZodSchemas from "~/helper/functions/generateZodSchemas";
-import AuthLayout from "../AuthLayout";
+import { Button } from "~/components/ui/button";
+import BadgeIcon from "/public/icons/Badge.svg";
+
 import {
 	Form,
 	FormControl,
@@ -25,27 +18,26 @@ import {
 	FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import { Button } from "~/components/ui/button";
+import AuthLayout from "../AuthLayout";
+import TextField from "~/app/_components/Inputs/TextFields";
+import Image from "next/image";
 
-const { schema, fieldNames } = generateZodSchemas({
+const FormSchema = z.object({
 	firstName: z.string().min(2),
-	lastName: z.string(),
+	lastName: z.string().min(2),
 	birthday: z.date().max(new Date()),
 	gender: z.enum(["male, female"]),
+	phone: z.string().max(10),
 	email: z.string().email(),
 	password: z.string().min(8),
 	confirmPassword: z.string().min(8),
 });
 
-type FormFields = z.infer<typeof schema>;
-
 const URL = "https://test.dynamicapp.ro:5999/auth/login";
 
 const Register = () => {
-	const [showPassword, setShowPassword] = React.useState(false);
-
-	const form = useForm<FormFields>({
-		resolver: zodResolver(schema),
+	const form = useForm<z.infer<typeof FormSchema>>({
+		resolver: zodResolver(FormSchema),
 		defaultValues: {
 			firstName: "",
 			lastName: "",
@@ -57,34 +49,67 @@ const Register = () => {
 		},
 	});
 
-	const onClickShowPassword = () => setShowPassword((prevState) => !prevState);
-
-	const onSubmit: SubmitHandler<FormFields> = (data) => {
+	function onSubmit(data: z.infer<typeof FormSchema>) {
 		console.log(data);
-	};
+	}
 
 	return (
 		<AuthLayout>
 			<Form {...form}>
 				<form
-					className="flex flex-col p-5 gap-4 items-center"
 					onSubmit={form.handleSubmit(onSubmit)}
+					className="w-2/3 space-y-6"
 				>
-					<FormField
+					<TextField
 						control={form.control}
 						name="firstName"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Username</FormLabel>
-								<FormControl>
-									<Input placeholder="shadcn" {...field} />
-								</FormControl>
-								<FormDescription>
-									This is your public display name.
-								</FormDescription>
-								<FormMessage />
-							</FormItem>
-						)}
+						placeholder="First name"
+						startIconPath="icons/Badge.svg"
+					/>
+					<TextField
+						control={form.control}
+						name="lastName"
+						placeholder="Last name"
+						startIconPath="icons/Badge.svg"
+					/>
+
+					<div className="flex gap-2">
+						<TextField
+							control={form.control}
+							name="birthday"
+							placeholder="Birthday"
+							startIconPath="icons/Birthday.svg"
+						/>
+						<TextField
+							control={form.control}
+							name="gender"
+							placeholder="Gender"
+							startIconPath="icons/Gender.svg"
+						/>
+					</div>
+					<TextField
+						control={form.control}
+						name="phone"
+						placeholder="Phone number"
+						startIconPath="icons/Phone.svg"
+					/>
+					<TextField
+						control={form.control}
+						name="email"
+						placeholder="Email"
+						startIconPath="icons/Email.svg"
+					/>
+					<TextField
+						control={form.control}
+						name="password"
+						placeholder="Password"
+						startIconPath="icons/Password.svg"
+					/>
+					<TextField
+						control={form.control}
+						name="confirmPassword"
+						placeholder="Confirm password"
+						startIconPath="icons/Password.svg"
 					/>
 					<Button type="submit">Submit</Button>
 				</form>

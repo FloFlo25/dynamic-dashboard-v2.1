@@ -8,16 +8,14 @@ import React from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
-import TextField from "~/app/_components/Inputs/TextFields/TextField";
-import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
-import AuthLayout from "../AuthLayout";
-import generateZodSchemas from "~/helper/functions/generateZodSchemas";
 import { CheckboxInput } from "~/app/_components/Checbox";
+import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
+import generateZodSchemas from "~/helper/functions/generateZodSchemas";
+import AuthLayout from "../AuthLayout";
 
 const { schema, fieldNames } = generateZodSchemas({
 	email: z.string().email(),
@@ -71,36 +69,16 @@ const Login = () => {
 					className="flex flex-col p-5 gap-4 items-center"
 					onSubmit={formHook.handleSubmit(onSubmit)}
 				>
-					<TextField
-						id="email"
-						name={fieldNames.email}
-						placeholder="Email"
-						startAdornment={
-							<AlternateEmailRoundedIcon style={{ color: "white" }} />
-						}
-					/>
-					<TextField
-						id="password"
-						name={fieldNames.password}
-						placeholder="Password"
-						type={showPassword ? "text" : "password"}
-						startAdornment={<PasswordRoundedIcon style={{ color: "white" }} />}
-						endAdornment={
-							showPassword ? (
-								<VisibilityOffRoundedIcon style={{ color: "white" }} />
-							) : (
-								<VisibilityRoundedIcon style={{ color: "white" }} />
-							)
-						}
-						onEndIconClick={onClickShowPassword}
-					/>
+					
 					<Link
 						href="/forgot-password"
 						className={"text-red-600 font-bold underline"}
 					>
 						Forgot your password?
 					</Link>
-					<PrimaryButton type="submit">Login</PrimaryButton>
+					<PrimaryButton type="submit">
+						Login
+					</PrimaryButton>
 					<CheckboxInput text="Remember me" />
 				</form>
 				<p style={{ color: "white" }}>
