@@ -1,20 +1,18 @@
-import { type StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
-import React from "react";
 import {
-	type ControllerProps,
-	type FieldValues,
-	type FieldPath,
+    type ControllerProps,
+    type FieldPath,
+    type FieldValues,
 } from "react-hook-form";
 import {
-	FormControl,
-	FormField,
-	FormItem,
-	FormMessage,
+    FormControl,
+    FormField,
+    FormItem,
+    FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 
-type FormFieldWrapperProps<
+type TextFieldProps<
 	TFieldValues extends FieldValues = FieldValues,
 	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Omit<ControllerProps<TFieldValues, TName>, "render"> & {
@@ -28,11 +26,11 @@ const TextField = <
 >({
 	startIconPath,
 	placeholder,
-	...formFieldProps
-}: FormFieldWrapperProps<TFieldValues, TName>) => (
+	...textFieldProps
+}: TextFieldProps<TFieldValues, TName>) => (
 	<div>
 		<FormField
-			{...formFieldProps}
+			{...textFieldProps}
 			render={({ field }) => (
 				<FormItem>
 					<FormControl>

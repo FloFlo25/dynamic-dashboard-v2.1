@@ -21,6 +21,7 @@ import { Input } from "~/components/ui/input";
 import AuthLayout from "../AuthLayout";
 import TextField from "~/app/_components/Inputs/TextFields";
 import Image from "next/image";
+import DropDown from "~/app/_components/Inputs/DropDown";
 
 const FormSchema = z.object({
 	firstName: z.string().min(2),
@@ -56,10 +57,7 @@ const Register = () => {
 	return (
 		<AuthLayout>
 			<Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className="w-2/3 space-y-6"
-				>
+				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
 					<TextField
 						control={form.control}
 						name="firstName"
@@ -80,11 +78,15 @@ const Register = () => {
 							placeholder="Birthday"
 							startIconPath="icons/Birthday.svg"
 						/>
-						<TextField
+						<DropDown
 							control={form.control}
 							name="gender"
 							placeholder="Gender"
 							startIconPath="icons/Gender.svg"
+							items={[
+								{ value: "male", text: "male" },
+								{ value: "female", text: "female" },
+							]}
 						/>
 					</div>
 					<TextField
