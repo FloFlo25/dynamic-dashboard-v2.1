@@ -72,6 +72,9 @@ const DatePicker = <
 							<Calendar
 								selected={field.value}
 								onSelect={field.onChange}
+								captionLayout="dropdown-buttons"
+								fromYear={1900}
+								toYear={2025}
 							/>
 						</PopoverContent>
 						<FormMessage className="absolute top-[30px]" />
