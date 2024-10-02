@@ -11,17 +11,24 @@ import Dropdown from "~/app/_components/Inputs/DropDown";
 import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
 import AuthLayout from "../AuthLayout";
+import { format } from "date-fns";
 
-const FormSchema = z.object({
-	firstName: z.string().min(2),
-	lastName: z.string().min(2),
-	birthday: z.date().max(new Date()),
-	gender: z.enum(["male, female"]),
-	phone: z.string().max(10),
-	email: z.string().email(),
-	password: z.string().min(8),
-	confirmPassword: z.string().min(8),
-});
+const FormSchema = z
+	.object({
+		firstName: z.string().min(2),
+		lastName: z.string().min(2),
+		birthday: z.date().max(new Date()),
+		gender: z.union([z.literal("m"), z.literal("f")]),
+		phone: z.string().max(10),
+		email: z.string().email(),
+		password: z.string().min(8),
+		confirmPassword: z.string().min(8),
+		tos: z.boolean().default(false),
+	})
+	.refine(({ password, confirmPassword }) => password === confirmPassword, {
+		message: "Passwords don't match",
+		path: ["confirmPassword"],
+	});
 
 const URL = "https://test.dynamicapp.ro:5999/auth/login";
 
@@ -36,11 +43,54 @@ const Register = () => {
 			email: "",
 			password: "",
 			confirmPassword: "",
+			phone: "",
+			tos: false,
 		},
 	});
 
+	// {
+	// 	"tac": true,
+	// 	"first_name": "FJISFNISF",
+	// 	"last_name": "asfnasfonafs",
+	// 	"email": "asfonasfoasfno@gmail.com",
+	// 	"phone_number": "0124124124",
+	// 	"gender": "m",
+	// 	"password": "Password@123",
+	// 	"birth_date": "2001-09-25",
+	// 	"password_confirmation": "Password@123",
+	// 	"receive_emails": false,
+	// 	"lang": "ro"
+	// }
+
+	type RegisterUser = {
+		tac: boolean;
+		first_name: string;
+		last_name: string;
+		email: string;
+		phone_number: string;
+		birth_date: string;
+		gender: "m" | "f";
+		password: string;
+		password_confirmation: string;
+		receive_emails: boolean;
+		lang: "ro" | "en";
+	};
+
 	function onSubmit(data: z.infer<typeof FormSchema>) {
-		console.log(data);
+		const apiData: RegisterUser = {
+			email: data.email,
+			first_name: data.firstName,
+			last_name: data.lastName,
+			gender: data.gender,
+			birth_date: format(data.birthday, "y-MM-dd"),
+			lang: "en",
+			password: data.password,
+			password_confirmation: data.confirmPassword,
+			phone_number: data.phone,
+			receive_emails: false,
+			tac: true,
+		};
+		console.log(apiData);
 	}
 
 	return (
@@ -76,8 +126,8 @@ const Register = () => {
 							placeholder="Gender"
 							startIconPath="icons/Gender.svg"
 							items={[
-								{ value: "male", text: "male" },
-								{ value: "female", text: "female" },
+								{ value: "m", text: "Male" },
+								{ value: "f", text: "Female" },
 							]}
 						/>
 					</div>
