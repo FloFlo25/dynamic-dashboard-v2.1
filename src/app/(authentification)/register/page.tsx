@@ -12,6 +12,8 @@ import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
 import AuthLayout from "../AuthLayout";
 import { format } from "date-fns";
+import SingleCheckbox from "~/app/_components/Inputs/SingleCheckbox";
+import { useToast } from "~/components/ui/use-toast";
 
 const FormSchema = z
 	.object({
@@ -33,6 +35,8 @@ const FormSchema = z
 const URL = "https://test.dynamicapp.ro:5999/auth/login";
 
 const Register = () => {
+	const { toast } = useToast();
+
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -47,20 +51,6 @@ const Register = () => {
 			tos: false,
 		},
 	});
-
-	// {
-	// 	"tac": true,
-	// 	"first_name": "FJISFNISF",
-	// 	"last_name": "asfnasfonafs",
-	// 	"email": "asfonasfoasfno@gmail.com",
-	// 	"phone_number": "0124124124",
-	// 	"gender": "m",
-	// 	"password": "Password@123",
-	// 	"birth_date": "2001-09-25",
-	// 	"password_confirmation": "Password@123",
-	// 	"receive_emails": false,
-	// 	"lang": "ro"
-	// }
 
 	type RegisterUser = {
 		tac: boolean;
@@ -98,7 +88,7 @@ const Register = () => {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="space-y-6 w-full text-center"
+					className="space-y-6 w-full flex flex-col justify-center"
 				>
 					<TextField
 						control={form.control}
@@ -113,7 +103,7 @@ const Register = () => {
 						startIconPath="icons/Badge.svg"
 					/>
 
-					<div className="flex gap-2">
+					<div className="flex w-full gap-2">
 						<DatePicker
 							control={form.control}
 							name="birthday"
@@ -156,6 +146,21 @@ const Register = () => {
 						name="confirmPassword"
 						placeholder="Confirm password"
 						startIconPath="icons/Password.svg"
+					/>
+					<SingleCheckbox
+						control={form.control}
+						name="tos"
+						label={
+							<>
+								Accept{" "}
+								<Link
+									href={"/terms-and-conditions"}
+									className="text-red-600 underline"
+								>
+									Terms and Conditions
+								</Link>
+							</>
+						}
 					/>
 					<PrimaryButton type="submit">Register</PrimaryButton>
 					<p style={{ color: "white" }}>

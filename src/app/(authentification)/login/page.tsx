@@ -34,8 +34,6 @@ const Login = () => {
 
 	const URL = "https://test.dynamicapp.ro:5999/auth/login";
 
-	const onClickShowPassword = () => setShowPassword((prevState) => !prevState);
-
 	const onSubmit: SubmitHandler<FormFields> = (data) => {
 		console.log(data);
 		axios

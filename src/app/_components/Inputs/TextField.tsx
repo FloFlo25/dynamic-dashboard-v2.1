@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import {
 	type ControllerProps,
 	type FieldPath,
@@ -28,8 +31,11 @@ const TextField = <
 	startIconPath,
 	placeholder,
 	...textFieldProps
-}: TextFieldProps<TFieldValues, TName>) => (
-	<div>
+}: TextFieldProps<TFieldValues, TName>) => {
+	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+	const passwordInputType = isPasswordVisible ? "text" : "password";
+
+	return (
 		<FormField
 			{...textFieldProps}
 			render={({ field }) => (
@@ -48,17 +54,34 @@ const TextField = <
 							)}
 							<Input
 								className="bg-white border-none"
-								type={textFieldProps.type}
+								type={
+									textFieldProps.type !== "password"
+										? textFieldProps.type
+										: passwordInputType
+								}
 								placeholder={placeholder}
 								{...field}
 							/>
+							{textFieldProps.type === "password" ? (
+								<Image
+									src={isPasswordVisible ? "icons/Hide.svg" : "icons/Show.svg"}
+									alt={"showpassword"}
+									onClick={() =>
+										setIsPasswordVisible((prevState) => !prevState)
+									}
+									width={24}
+									height={24}
+								/>
+							) : (
+								<></>
+							)}
 						</div>
 					</FormControl>
 					<FormMessage className="absolute top-[30px]" />
 				</FormItem>
 			)}
 		/>
-	</div>
-);
+	);
+};
 
 export default TextField;

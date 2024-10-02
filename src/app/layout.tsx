@@ -1,6 +1,7 @@
 import "~/styles/globals.css";
 
 import { Inter, Poppins } from "next/font/google";
+import { Toaster } from "~/components/ui/toaster";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
 				className={`font-sans ${inter.variable} ${poppins.variable}`}
 			>
 				{children}
+			<Toaster />
 			</body>
 		</html>
 	);
