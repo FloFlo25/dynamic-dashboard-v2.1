@@ -66,6 +66,7 @@ function Calendar({
 			components={{
 				IconLeft: ({ ...props }) => <ChevronLeftIcon className="h-4 w-4" />,
 				IconRight: ({ ...props }) => <ChevronRightIcon className="h-4 w-4" />,
+				
 				Dropdown: (props) => {
 					const { fromYear, toYear, fromMonth, toMonth, fromDate, toDate } =
 						useDayPicker();

@@ -10,15 +10,16 @@ import {
 	FormItem,
 	FormMessage,
 } from "~/components/ui/form";
-import { Input } from "~/components/ui/input";
+import { Input, type InputProps } from "~/components/ui/input";
 
 type TextFieldProps<
 	TFieldValues extends FieldValues = FieldValues,
 	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = Omit<ControllerProps<TFieldValues, TName>, "render"> & {
-	startIconPath?: string;
-	placeholder: string;
-};
+> = Omit<ControllerProps<TFieldValues, TName>, "render"> &
+	InputProps & {
+		startIconPath?: string;
+		placeholder: string;
+	};
 
 const TextField = <
 	TFieldValues extends FieldValues = FieldValues,
@@ -47,6 +48,7 @@ const TextField = <
 							)}
 							<Input
 								className="bg-white border-none"
+								type={textFieldProps.type}
 								placeholder={placeholder}
 								{...field}
 							/>

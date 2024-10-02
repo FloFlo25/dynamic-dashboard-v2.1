@@ -1,6 +1,5 @@
 "use client";
 
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -10,9 +9,7 @@ import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import DatePicker from "~/app/_components/Inputs/DatePicker";
 import Dropdown from "~/app/_components/Inputs/DropDown";
 import TextField from "~/app/_components/Inputs/TextField";
-import {
-	Form
-} from "~/components/ui/form";
+import { Form } from "~/components/ui/form";
 import AuthLayout from "../AuthLayout";
 
 const FormSchema = z.object({
@@ -98,12 +95,14 @@ const Register = () => {
 					/>
 					<TextField
 						control={form.control}
+						type="password"
 						name="password"
 						placeholder="Password"
 						startIconPath="icons/Password.svg"
 					/>
 					<TextField
 						control={form.control}
+						type="password"
 						name="confirmPassword"
 						placeholder="Confirm password"
 						startIconPath="icons/Password.svg"
