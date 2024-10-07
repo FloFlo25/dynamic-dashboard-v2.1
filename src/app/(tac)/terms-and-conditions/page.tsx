@@ -13,7 +13,7 @@ const TermsAndConditions = () => {
 			}}
 		>
 			<Tabs defaultValue="terms" className="w-full p-8 flex h-full gap-8">
-				<TabsList className="flex justify-start w-[356px] p-8 rounded-[24px] h-full flex-col bg-[#94949457] bg-opacity-25 backdrop-blur-sm">
+				<TabsList className="flex justify-start w-[356px] gap-2 p-8 rounded-[24px] h-full flex-col bg-[#94949457] bg-opacity-25 backdrop-blur-sm">
 					<TermsAndConditionsTab value="terms">
 						Terms & Conditions
 					</TermsAndConditionsTab>
