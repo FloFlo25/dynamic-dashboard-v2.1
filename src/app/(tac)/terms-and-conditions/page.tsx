@@ -1,10 +1,14 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import TermsAndConditionsContent from "../TermsAndConditions";
 import TermsAndConditionsTab from "../TermsAndConditionsTab";
+
 import RulesContent from "../RulesContent";
 import GdprContent from "../GdprContent";
+import { useWindowSize } from '@uidotdev/usehooks';
 
 const TermsAndConditions = () => {
+	const size = useWindowSize()
+
 	return (
 		<div
 			className="flex flex-col items-start gap-6 bg-cover bg-center h-full"
