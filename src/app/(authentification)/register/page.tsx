@@ -10,7 +10,6 @@ import DatePicker from "~/app/_components/Inputs/DatePicker";
 import Dropdown from "~/app/_components/Inputs/DropDown";
 import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
-import AuthLayout from "../AuthLayout";
 import { format } from "date-fns";
 import SingleCheckbox from "~/app/_components/Inputs/SingleCheckbox";
 import { useToast } from "~/components/ui/use-toast";
@@ -84,94 +83,92 @@ const Register = () => {
 	}
 
 	return (
-		<AuthLayout>
-			<Form {...form}>
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className="space-y-6 w-full flex flex-col justify-center items-center"
-				>
-					<TextField
-						control={form.control}
-						name="firstName"
-						placeholder="First name"
-						startIconPath="icons/Badge.svg"
-					/>
-					<TextField
-						control={form.control}
-						name="lastName"
-						placeholder="Last name"
-						startIconPath="icons/Badge.svg"
-					/>
+		<Form {...form}>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="space-y-6 w-full flex flex-col justify-center items-center"
+			>
+				<TextField
+					control={form.control}
+					name="firstName"
+					placeholder="First name"
+					startIconPath="icons/Badge.svg"
+				/>
+				<TextField
+					control={form.control}
+					name="lastName"
+					placeholder="Last name"
+					startIconPath="icons/Badge.svg"
+				/>
 
-					<div className="flex w-full gap-2">
-						<DatePicker
-							control={form.control}
-							name="birthday"
-							placeholder="Birthday"
-							startIconPath="icons/Birthday.svg"
-						/>
-						<Dropdown
-							control={form.control}
-							name="gender"
-							placeholder="Gender"
-							startIconPath="icons/Gender.svg"
-							items={[
-								{ value: "m", text: "Male" },
-								{ value: "f", text: "Female" },
-							]}
-						/>
-					</div>
-					<TextField
+				<div className="flex w-full gap-2">
+					<DatePicker
 						control={form.control}
-						name="phone"
-						placeholder="Phone number"
-						startIconPath="icons/Phone.svg"
+						name="birthday"
+						placeholder="Birthday"
+						startIconPath="icons/Birthday.svg"
 					/>
-					<TextField
+					<Dropdown
 						control={form.control}
-						name="email"
-						placeholder="Email"
-						startIconPath="icons/Email.svg"
+						name="gender"
+						placeholder="Gender"
+						startIconPath="icons/Gender.svg"
+						items={[
+							{ value: "m", text: "Male" },
+							{ value: "f", text: "Female" },
+						]}
 					/>
-					<TextField
-						control={form.control}
-						type="password"
-						name="password"
-						placeholder="Password"
-						startIconPath="icons/Password.svg"
-					/>
-					<TextField
-						control={form.control}
-						type="password"
-						name="confirmPassword"
-						placeholder="Confirm password"
-						startIconPath="icons/Password.svg"
-					/>
-					<SingleCheckbox
-						control={form.control}
-						name="tos"
-						label={
-							<>
-								Accept{" "}
-								<Link
-									href={"/terms-and-conditions"}
-									className="text-red-600 underline"
-								>
-									Terms and Conditions
-								</Link>
-							</>
-						}
-					/>
-					<PrimaryButton type="submit">Register</PrimaryButton>
-					<p style={{ color: "white" }}>
-						{"You already have an account? "}
-						<Link href="/login" className={"text-red-600 font-bold underline"}>
-							Login
-						</Link>
-					</p>
-				</form>
-			</Form>
-		</AuthLayout>
+				</div>
+				<TextField
+					control={form.control}
+					name="phone"
+					placeholder="Phone number"
+					startIconPath="icons/Phone.svg"
+				/>
+				<TextField
+					control={form.control}
+					name="email"
+					placeholder="Email"
+					startIconPath="icons/Email.svg"
+				/>
+				<TextField
+					control={form.control}
+					type="password"
+					name="password"
+					placeholder="Password"
+					startIconPath="icons/Password.svg"
+				/>
+				<TextField
+					control={form.control}
+					type="password"
+					name="confirmPassword"
+					placeholder="Confirm password"
+					startIconPath="icons/Password.svg"
+				/>
+				<SingleCheckbox
+					control={form.control}
+					name="tos"
+					label={
+						<>
+							Accept{" "}
+							<Link
+								href={"/terms-and-conditions"}
+								className="text-red-600 underline"
+							>
+								Terms and Conditions
+							</Link>
+						</>
+					}
+				/>
+				<PrimaryButton type="submit">Register</PrimaryButton>
+				<p style={{ color: "white" }}>
+					{"You already have an account? "}
+					<Link href="/login" className={"text-red-600 font-bold underline"}>
+						Login
+					</Link>
+				</p>
+			</form>
+		</Form>
 	);
 };
 

@@ -9,13 +9,12 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { CheckboxInput } from "~/app/_components/Checbox";
 import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import generateZodSchemas from "~/helper/functions/generateZodSchemas";
-import AuthLayout from "../AuthLayout";
+import AuthLayout from "../layout";
 
 const { schema, fieldNames } = generateZodSchemas({
 	email: z.string().email(),
@@ -25,9 +24,6 @@ const { schema, fieldNames } = generateZodSchemas({
 type FormFields = z.infer<typeof schema>;
 
 const Login = () => {
-	const router = useRouter();
-	const [showPassword, setShowPassword] = React.useState(false);
-
 	const formHook = useForm<FormFields>({
 		resolver: zodResolver(schema),
 	});
@@ -61,32 +57,27 @@ const Login = () => {
 	};
 
 	return (
-		<AuthLayout>
-			<div>
-				<form
-					className="flex flex-col p-5 gap-4 items-center"
-					onSubmit={formHook.handleSubmit(onSubmit)}
+		<div>
+			<form
+				className="flex flex-col p-5 gap-4 items-center"
+				onSubmit={formHook.handleSubmit(onSubmit)}
+			>
+				<Link
+					href="/forgot-password"
+					className={"text-red-600 font-bold underline"}
 				>
-					
-					<Link
-						href="/forgot-password"
-						className={"text-red-600 font-bold underline"}
-					>
-						Forgot your password?
-					</Link>
-					<PrimaryButton type="submit">
-						Login
-					</PrimaryButton>
-					<CheckboxInput text="Remember me" />
-				</form>
-				<p style={{ color: "white" }}>
-					You don’t have an account?
-					<Link href="/register" className={"text-red-600 font-bold underline"}>
-						Register
-					</Link>
-				</p>
-			</div>
-		</AuthLayout>
+					Forgot your password?
+				</Link>
+				<PrimaryButton type="submit">Login</PrimaryButton>
+				<CheckboxInput text="Remember me" />
+			</form>
+			<p style={{ color: "white" }}>
+				You don’t have an account?
+				<Link href="/register" className={"text-red-600 font-bold underline"}>
+					Register
+				</Link>
+			</p>
+		</div>
 	);
 };
 
