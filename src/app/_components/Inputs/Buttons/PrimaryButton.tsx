@@ -1,17 +1,13 @@
-import { type ButtonProps } from "@mui/base/Button";
-import { Button } from "@mui/base/Button/Button";
 import React from "react";
+import { Button, type ButtonProps } from "~/components/ui/button";
 
-type Props = ButtonProps;
+type Props = ButtonProps & { icon?: React.ReactNode };
 
-const PrimaryButton = ({ ...props }: Props) => {
+const PrimaryButton = ({ children, icon, ...props }: Props) => {
 	return (
-		<Button
-			{...props}
-			className={`bg-[#ED1C24] normal-case rounded text-white shadow-none hover:bg-[#8b0101] active:bg-[#640b0b] w-fit px-10 py-2
-			 font-bold font-mono`}
-		>
-			{props.children}
+		<Button {...props} className="w-fit gap-2 px-4">
+			{icon}
+			{children}
 		</Button>
 	);
 };

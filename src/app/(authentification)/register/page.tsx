@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import Image from "next/image";
+
 import Link from "next/link";
 import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import DatePicker from "~/app/_components/Inputs/DatePicker";
@@ -86,7 +88,7 @@ const Register = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="space-y-6 w-full flex flex-col justify-center items-center"
+				className="flex w-full flex-col items-center justify-center space-y-6"
 			>
 				<TextField
 					control={form.control}
@@ -163,7 +165,7 @@ const Register = () => {
 				<PrimaryButton type="submit">Register</PrimaryButton>
 				<p style={{ color: "white" }}>
 					{"You already have an account? "}
-					<Link href="/login" className={"text-red-600 font-bold underline"}>
+					<Link href="/login" className={"font-bold text-red-600 underline"}>
 						Login
 					</Link>
 				</p>
