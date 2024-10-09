@@ -23,14 +23,28 @@ const config = {
 				full: "9999px",
 			},
 			colors: {
-				primary: {
-					main: "",
-					light: "",
+				accent: {
+					main: "#ED1C24",
+					light: "#FFE1E1",
+					dark: "#8E1E23",
 				},
+				primary: { main: "#3A3F52", light: "#595E77" },
 				secondary: {
-					main: "",
-					light: "",
+					main: "#1F222D",
+					light: "#272A3A",
 				},
+				success: {
+					main: "#57A463",
+					light: "#E1FFE6",
+					dark: "#336532",
+				},
+				info: {
+					main: "#325665",
+					light: "#ADE1E9",
+					dark: "#1F3640",
+				},
+				disabled: "#8f8f8f7f",
+				inactive: "hsl(25, 25%, 25%)",
 			},
 			screens: {
 				xs: "360px",

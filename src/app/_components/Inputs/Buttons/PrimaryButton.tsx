@@ -5,7 +5,7 @@ type Props = ButtonProps & { icon?: React.ReactNode };
 
 const PrimaryButton = ({ children, icon, ...props }: Props) => {
 	return (
-		<Button {...props} className="w-fit gap-2 px-4">
+		<Button {...props} className="w-fit gap-2">
 			{icon}
 			{children}
 		</Button>

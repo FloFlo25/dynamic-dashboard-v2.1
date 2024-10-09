@@ -47,8 +47,8 @@ const DatePicker = <
 						<PopoverTrigger asChild>
 							<FormControl>
 								<Button
-									variant={"outline"}
-									className="rounded-md py-0 px-2 w-full text-sm justify-start flex gap-2"
+									variant="white"
+									className="flex w-full justify-start gap-2 rounded-md px-2 py-0 text-sm"
 								>
 									{startIconPath ? (
 										<Image

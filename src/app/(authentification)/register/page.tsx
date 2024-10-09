@@ -4,17 +4,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import Image from "next/image";
-
+import { format } from "date-fns";
 import Link from "next/link";
 import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import DatePicker from "~/app/_components/Inputs/DatePicker";
 import Dropdown from "~/app/_components/Inputs/DropDown";
+import SingleCheckbox from "~/app/_components/Inputs/SingleCheckbox";
 import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
-import { format } from "date-fns";
-import SingleCheckbox from "~/app/_components/Inputs/SingleCheckbox";
-import { useToast } from "~/components/ui/use-toast";
 
 const FormSchema = z
 	.object({
@@ -26,7 +23,7 @@ const FormSchema = z
 		email: z.string().email(),
 		password: z.string().min(8),
 		confirmPassword: z.string().min(8),
-		tos: z.boolean().default(false),
+		tac: z.boolean().default(false),
 	})
 	.refine(({ password, confirmPassword }) => password === confirmPassword, {
 		message: "Passwords don't match",
@@ -36,8 +33,6 @@ const FormSchema = z
 const URL = "https://test.dynamicapp.ro:5999/auth/login";
 
 const Register = () => {
-	const { toast } = useToast();
-
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -49,7 +44,7 @@ const Register = () => {
 			password: "",
 			confirmPassword: "",
 			phone: "",
-			tos: false,
+			tac: false,
 		},
 	});
 
@@ -149,10 +144,10 @@ const Register = () => {
 				/>
 				<SingleCheckbox
 					control={form.control}
-					name="tos"
+					name="tac"
 					label={
 						<>
-							Accept{" "}
+							Accept
 							<Link
 								href={"/terms-and-conditions"}
 								className="text-red-600 underline"
@@ -162,7 +157,7 @@ const Register = () => {
 						</>
 					}
 				/>
-				<PrimaryButton type="submit">Register</PrimaryButton>
+				<PrimaryButton type="submit">Create account</PrimaryButton>
 				<p style={{ color: "white" }}>
 					{"You already have an account? "}
 					<Link href="/login" className={"font-bold text-red-600 underline"}>

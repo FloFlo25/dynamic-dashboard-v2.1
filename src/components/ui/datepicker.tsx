@@ -1,28 +1,27 @@
 "use client";
 
-import React from "react";
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
-import { Button } from "./button";
-import { cn } from "~/lib/utils";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { Calendar } from "./calendar";
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import { format } from "date-fns";
+import React from "react";
+import { cn } from "~/lib/utils";
+import { Button } from "./button";
+import { Calendar } from "./calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 type Props = {
 	placeholder?: string;
 };
 
-export function DatePicker({ placeholder }: Props) {
+export function DatePicker({ placeholder }: Readonly<Props>) {
 	const [date, setDate] = React.useState<Date>();
 
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
 				<Button
-					variant={"outline"}
+					variant="white"
 					className={cn(
-						"w-full h-[48px]  justify-start text-left rounded font-normal",
+						"h-[48px] w-full justify-start rounded text-left font-normal",
 						!date && "text-muted-foreground",
 					)}
 				>
