@@ -13,7 +13,7 @@ import { useToast } from "~/components/ui/use-toast";
 const FormSchema = z.object({ email: z.string(), password: z.string() });
 
 type AuthResponse =
-	| { auth_token: string; refresh_token: string }
+	| { access_token: string; refresh_token: string }
 	| { msg: string };
 
 const Login = () => {
@@ -35,16 +35,14 @@ const Login = () => {
 		});
 
 		if ("msg" in response.data) {
-			// If the response contains a msg, show the error message
 			toast({ title: response.data.msg });
 		} else {
-			// If the response contains the tokens, handle the success case
-			const { auth_token, refresh_token } = response.data;
+			const { access_token, refresh_token } = response.data;
 			toast({ title: "Success!" });
 
-			// You can store the tokens here or do other actions
-			localStorage.setItem("auth_token", auth_token);
+			localStorage.setItem("access_token", access_token);
 			localStorage.setItem("refresh_token", refresh_token);
+			
 		}
 	};
 
