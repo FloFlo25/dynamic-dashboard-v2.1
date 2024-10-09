@@ -30,8 +30,6 @@ const FormSchema = z
 		path: ["confirmPassword"],
 	});
 
-const URL = "https://test.dynamicapp.ro:5999/auth/login";
-
 const Register = () => {
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
