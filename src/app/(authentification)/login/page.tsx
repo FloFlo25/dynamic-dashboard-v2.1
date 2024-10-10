@@ -9,8 +9,12 @@ import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
 import axios from "axios";
 import { useToast } from "~/components/ui/use-toast";
+import BugIcon from "~/app/_components/Icons/BugIcon";
 
-const FormSchema = z.object({ email: z.string(), password: z.string() });
+const FormSchema = z.object({
+	email: z.string().email(),
+	password: z.string().min(8, "Passwords have atleast 8 characters"),
+});
 
 type AuthResponse =
 	| { access_token: string; refresh_token: string }
@@ -35,14 +39,17 @@ const Login = () => {
 		});
 
 		if ("msg" in response.data) {
-			toast({ title: response.data.msg });
+			toast({
+				title: "Wrong credentials",
+				variant: "destructive",
+				icon: <BugIcon fill="accent-light" />,
+			});
 		} else {
 			const { access_token, refresh_token } = response.data;
 			toast({ title: "Success!" });
 
 			localStorage.setItem("access_token", access_token);
 			localStorage.setItem("refresh_token", refresh_token);
-			
 		}
 	};
 
