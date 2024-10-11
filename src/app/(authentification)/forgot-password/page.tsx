@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { postResetPassword } from "~/api/auth";
 import BackIcon from "~/app/_components/Icons/BackIcon";
+import BugIcon from "~/app/_components/Icons/BugIcon";
 import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
@@ -27,12 +28,13 @@ export default function ForgotPassword() {
 
 	const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 		const response = await postResetPassword({ email: data.email, lang: "en" });
-
-		if (response.status)
+		console.log(response);
+		if (!response.status)
 			toast({
-				title: "Wrong credentials",
+				title: "User not found.",
 				variant: "destructive",
-				icon: <BugIcon fill="accent-light" />,
+				icon: <BugIcon className="white"/>,
+				
 			});
 	};
 
