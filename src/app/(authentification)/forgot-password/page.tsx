@@ -7,6 +7,7 @@ import { z } from "zod";
 import { postResetPassword } from "~/api/auth";
 import BackIcon from "~/app/_components/Icons/BackIcon";
 import BugIcon from "~/app/_components/Icons/BugIcon";
+import CheckIcon from "~/app/_components/Icons/CheckIcon";
 import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
@@ -29,13 +30,19 @@ export default function ForgotPassword() {
 	const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 		const response = await postResetPassword({ email: data.email, lang: "en" });
 		console.log(response);
-		if (!response.status)
+		if (!response.status) {
 			toast({
 				title: "User not found.",
 				variant: "destructive",
-				icon: <BugIcon className="white"/>,
-				
+				icon: <BugIcon className="fill-accent-light" />,
 			});
+			return;
+		}
+		toast({
+			title: "Reset succseful. Check your email!",
+			variant: "success",
+			icon: <CheckIcon className="fill-success-light" />,
+		});
 	};
 
 	return (
@@ -64,6 +71,7 @@ export default function ForgotPassword() {
 						icon={<BackIcon />}
 						variant="tertiary"
 						onClick={() => router.push("../")}
+						type="button"
 					>
 						Back
 					</PrimaryButton>
