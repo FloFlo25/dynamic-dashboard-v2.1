@@ -12,6 +12,7 @@ import Dropdown from "~/app/_components/Inputs/DropDown";
 import SingleCheckbox from "~/app/_components/Inputs/SingleCheckbox";
 import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
+import { type RegisterUserData } from "~/types/auth";
 
 const FormSchema = z
 	.object({
@@ -46,22 +47,8 @@ const Register = () => {
 		},
 	});
 
-	type RegisterUser = {
-		tac: boolean;
-		first_name: string;
-		last_name: string;
-		email: string;
-		phone_number: string;
-		birth_date: string;
-		gender: "m" | "f";
-		password: string;
-		password_confirmation: string;
-		receive_emails: boolean;
-		lang: "ro" | "en";
-	};
-
 	function onSubmit(data: z.infer<typeof FormSchema>) {
-		const apiData: RegisterUser = {
+		const apiData: RegisterUserData = {
 			email: data.email,
 			first_name: data.firstName,
 			last_name: data.lastName,
