@@ -11,6 +11,8 @@ import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
 import { toast } from "~/components/ui/use-toast";
+import { isMsgStatus } from "~/lib/utils";
+import { jwtDecode } from "jwt-decode";
 
 const FormSchema = z.object({
 	email: z.string().email(),
@@ -29,7 +31,7 @@ const Login = () => {
 	const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 		const response = await postLogin(data);
 
-		if (!response.status) {
+		if (isMsgStatus(response)) {
 			toast({
 				title: "Invalid email or password.",
 				variant: "destructive",
@@ -37,6 +39,11 @@ const Login = () => {
 			});
 			return;
 		}
+		localStorage.setItem("access_token", response.access_token);
+		localStorage.setItem("refresh_token", response.refresh_token);
+
+		console.log(jwtDecode(response.access_token));
+
 		toast({
 			title: "Login succesful!",
 			variant: "success",

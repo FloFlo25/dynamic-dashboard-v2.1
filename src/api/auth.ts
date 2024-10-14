@@ -3,6 +3,7 @@ import {
 	type MsgStatus,
 	type RegisterUserData,
 	type LoginData,
+	type LoginResponse,
 } from "~/types/auth";
 import apiClient from "./axiosInstace";
 
@@ -32,9 +33,6 @@ export const postRegister = async (registerUserData: RegisterUserData) => {
 };
 
 export const postLogin = async (loginData: LoginData) => {
-	const response = await apiClient.post<MsgStatus>(
-		"auth/login",
-		loginData,
-	);
+	const response = await apiClient.post<LoginResponse>("auth/login", loginData);
 	return response.data;
 };
