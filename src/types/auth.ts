@@ -1,5 +1,9 @@
 export type MsgStatus = { msg: string; status: boolean };
+export type AuthResponse =
+	| { access_token: string; refresh_token: string }
+	| MsgStatus;
 export type ResetPasswordData = { email: string; lang: "ro" | "en" };
+export type LoginData = { email: string; password: string };
 export type RegisterUserData = {
 	tac: boolean;
 	first_name: string;
