@@ -1,6 +1,6 @@
 type Props = { className?: string };
 
-const BugIcon = ({ className = "black" }: Props) => {
+const BugIcon = ({ className }: Props) => {
 	return (
 		<svg
 			width="29"
