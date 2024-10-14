@@ -29,7 +29,7 @@ export default function ForgotPassword() {
 
 	const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 		const response = await postResetPassword({ email: data.email, lang: "en" });
-		console.log(response);
+
 		if (!response.status) {
 			toast({
 				title: "User not found.",
