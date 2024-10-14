@@ -13,6 +13,11 @@ import SingleCheckbox from "~/app/_components/Inputs/SingleCheckbox";
 import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
 import { type RegisterUserData } from "~/types/auth";
+import { postRegister } from "~/api/auth";
+import { toast } from "~/components/ui/use-toast";
+import BugIcon from "~/app/_components/Icons/BugIcon";
+import CheckIcon from "~/app/_components/Icons/CheckIcon";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z
 	.object({
@@ -32,6 +37,8 @@ const FormSchema = z
 	});
 
 const Register = () => {
+	const router = useRouter();
+
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -47,7 +54,7 @@ const Register = () => {
 		},
 	});
 
-	function onSubmit(data: z.infer<typeof FormSchema>) {
+	const onSubmit = async (data: z.infer<typeof FormSchema>) => {
 		const apiData: RegisterUserData = {
 			email: data.email,
 			first_name: data.firstName,
@@ -61,8 +68,25 @@ const Register = () => {
 			receive_emails: false,
 			tac: true,
 		};
-		console.log(apiData);
-	}
+
+		const response = await postRegister(apiData);
+
+		if (!response.status) {
+			toast({
+				title: "User already registered.",
+				variant: "destructive",
+				icon: <BugIcon className="fill-accent-light" />,
+			});
+			return;
+		}
+		toast({
+			title: "Account created succesfully!",
+			description: "Verify your account before you login from the email we've sent you.",
+			variant: "success",
+			icon: <CheckIcon className="fill-success-light" />,
+		});
+		setTimeout(() => router.push("/login"), 2000);
+	};
 
 	return (
 		<Form {...form}>
