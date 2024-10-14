@@ -42,7 +42,7 @@ const Login = () => {
 			toast({
 				title: "Wrong credentials",
 				variant: "destructive",
-				icon: <BugIcon fill="accent-light" />,
+				icon: <BugIcon className="fill-accent-light" />,
 			});
 		} else {
 			const { access_token, refresh_token } = response.data;
