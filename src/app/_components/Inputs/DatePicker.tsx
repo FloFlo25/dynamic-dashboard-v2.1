@@ -48,7 +48,7 @@ const DatePicker = <
 							<FormControl>
 								<Button
 									variant="white"
-									className="flex w-full justify-start gap-2 rounded-md px-2 py-0 text-sm"
+									className="flex w-full text-black justify-start gap-2 rounded-md px-2 py-0 text-sm"
 								>
 									{startIconPath ? (
 										<Image
