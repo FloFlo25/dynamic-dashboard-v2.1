@@ -1,6 +1,7 @@
 import {
-	type ResetPasswordResponse,
 	type ResetPasswordData,
+	type MsgStatus,
+	type RegisterUserData,
 } from "~/types/auth";
 import apiClient from "./axiosInstace";
 
@@ -13,10 +14,20 @@ import apiClient from "./axiosInstace";
 
 export const postResetPassword = async (
 	resetPasswordData: ResetPasswordData,
-): Promise<ResetPasswordResponse> => {
-	const response = await apiClient.post<ResetPasswordResponse>(
+): Promise<MsgStatus> => {
+	const response = await apiClient.post<MsgStatus>(
 		"auth/forgot-password",
 		resetPasswordData,
+	);
+	return response.data;
+};
+
+export const postRegister = async (
+	registerUserData: RegisterUserData,
+): Promise<MsgStatus> => {
+	const response = await apiClient.post<MsgStatus>(
+		"auth/register",
+		registerUserData,
 	);
 	return response.data;
 };
