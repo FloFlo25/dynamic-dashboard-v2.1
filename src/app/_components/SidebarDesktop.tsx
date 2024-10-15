@@ -6,19 +6,19 @@ import UserSidebarItem from "./UserSidebarItem";
 
 const SidebarDesktop = () => {
 	return (
-		<aside className="bg-muted/40 hidden border-r md:block">
+		<aside className="bg-primary-dark m-2 hidden rounded-md md:block">
 			<div className="flex h-full max-h-screen flex-col gap-2">
 				<div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
 					<Link href="/" className="flex items-center gap-2 font-semibold">
-						<span className="">Acme Inc</span>
+						<span className="">Dynamic</span>
 					</Link>
-					<Button variant="default" size="icon" className="ml-auto h-8 w-8">
+					<Button variant="tertiary" size="icon" className="ml-auto h-8 w-8">
 						<HomeIcon />
 						<span className="sr-only">Toggle notifications</span>
 					</Button>
 				</div>
 				<SidebarMenu />
-				<div className="mt-auto"></div>
+				<div></div>
 				<UserSidebarItem />
 			</div>
 		</aside>

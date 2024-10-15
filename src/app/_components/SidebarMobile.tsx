@@ -8,14 +8,13 @@ const SidebarMobile = () => {
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
-				<Button variant="default" size="icon" className="shrink-0 md:hidden">
+				<Button variant="tertiary" size="icon" className="shrink-0 md:hidden">
 					<HomeIcon />
 					<span className="sr-only">Toggle navigation menu</span>
 				</Button>
 			</SheetTrigger>
-			<SheetContent side="left" className="flex flex-col">
+			<SheetContent side="left" className="bg-primary-dark flex border-none flex-col">
 				<SidebarMenu />
-				<div className="mt-auto"></div>
 				<UserSidebarItem />
 			</SheetContent>
 		</Sheet>
