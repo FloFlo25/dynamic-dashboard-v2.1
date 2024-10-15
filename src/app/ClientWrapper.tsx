@@ -9,7 +9,6 @@ export default function ClientWrapper({
 }: {
 	children: React.ReactNode;
 }) {
-	console.log(isUserLoggedIn());
 	return (
 		<div className="flex">
 			{isUserLoggedIn() && (
