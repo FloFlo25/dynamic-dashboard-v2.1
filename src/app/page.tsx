@@ -1,6 +1,10 @@
+"use client";
+
 import { redirect } from "next/navigation";
+import { isUserLoggedIn } from "~/lib/utils";
 
 export default function HomePage() {
-	redirect("/login");
-	return <div>Home</div>;
+	if (!isUserLoggedIn()) redirect("/login");
+
+	return <main></main>;
 }

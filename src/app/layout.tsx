@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { Inter, Poppins } from "next/font/google";
 import { Toaster } from "~/components/ui/toaster";
+import Sidebar from "./_components/Sidebar";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -27,11 +28,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={`font-sans ${inter.variable} ${poppins.variable}`}
-			>
+			<body className={`font-sans ${inter.variable} ${poppins.variable}`}>
+				<Sidebar />
 				{children}
-			<Toaster />
+				<Toaster />
 			</body>
 		</html>
 	);

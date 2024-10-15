@@ -2,17 +2,16 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { postLogin } from "~/api/auth";
 import BugIcon from "~/app/_components/Icons/BugIcon";
-import CheckIcon from "~/app/_components/Icons/CheckIcon";
 import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
 import { toast } from "~/components/ui/use-toast";
-import { isMsgStatus } from "~/lib/utils";
-import { jwtDecode } from "jwt-decode";
+import { isMsgStatus, isUserLoggedIn } from "~/lib/utils";
 
 const FormSchema = z.object({
 	email: z.string().email(),
@@ -20,6 +19,9 @@ const FormSchema = z.object({
 });
 
 const Login = () => {
+	const router = useRouter();
+	if (isUserLoggedIn()) router.push("/");
+
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -42,13 +44,7 @@ const Login = () => {
 		localStorage.setItem("access_token", response.access_token);
 		localStorage.setItem("refresh_token", response.refresh_token);
 
-		console.log(jwtDecode(response.access_token));
-
-		toast({
-			title: "Login succesful!",
-			variant: "success",
-			icon: <CheckIcon className="fill-success-light" />,
-		});
+		router.push("/");
 	};
 
 	return (
