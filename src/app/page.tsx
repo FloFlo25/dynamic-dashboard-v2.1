@@ -6,5 +6,5 @@ import { isUserLoggedIn } from "~/lib/utils";
 export default function HomePage() {
 	if (!isUserLoggedIn()) redirect("/login");
 
-	return <main></main>;
+	return <main>Main content</main>;
 }
