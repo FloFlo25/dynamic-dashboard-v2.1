@@ -1,10 +1,13 @@
-"use client";
-
-import { redirect } from "next/navigation";
-import { isUserLoggedIn } from "~/lib/utils";
+import SidebarDesktop from "./_components/SidebarDesktop";
+import SidebarMobile from "./_components/SidebarMobile";
 
 export default function HomePage() {
-	if (!isUserLoggedIn()) redirect("/login");
-
-	return <main>Main content</main>;
+	return (
+		<main>
+			<div className="grid min-h-screen md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+				<SidebarDesktop />
+				<SidebarMobile />
+			</div>
+		</main>
+	);
 }
