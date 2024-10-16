@@ -11,7 +11,7 @@ import PrimaryButton from "~/app/_components/Inputs/Buttons/PrimaryButton";
 import TextField from "~/app/_components/Inputs/TextField";
 import { Form } from "~/components/ui/form";
 import { toast } from "~/components/ui/use-toast";
-import { isMsgStatus, isUserLoggedIn } from "~/lib/utils";
+import { isMsgStatus } from "~/lib/utils";
 
 const FormSchema = z.object({
 	email: z.string().email(),
@@ -20,7 +20,7 @@ const FormSchema = z.object({
 
 const Login = () => {
 	const router = useRouter();
-	if (isUserLoggedIn()) router.push("/");
+	// if (isUserLoggedIn()) router.push("/");
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -41,8 +41,8 @@ const Login = () => {
 			});
 			return;
 		}
-		localStorage.setItem("access_token", response.access_token);
-		localStorage.setItem("refresh_token", response.refresh_token);
+		document.cookie = `access_token=${response.access_token}; path=/; max-age=3600;`;
+		document.cookie = `refresh_token=${response.refresh_token}; path=/; max-age=86400;`;
 
 		router.push("/");
 	};
