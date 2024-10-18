@@ -6,10 +6,10 @@ type Props = { children: React.ReactNode };
 
 const layout = ({ children }: Props) => {
 	return (
-		<div className="grid min-h-screen bg-black md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+		<div className="flex min-h-screen bg-secondary-main ">
 			<SidebarDesktop />
-			{children}
 			<SidebarMobile />
+			{children}
 		</div>
 	);
 };

@@ -44,7 +44,7 @@ const config = {
 					dark: "#1F3640",
 				},
 				disabled: "#8f8f8f7f",
-				inactive: "hsl(25, 25%, 25%)",
+				inactive: "hsl(0, 0%, 100%, 70%)",
 			},
 			screens: {
 				xs: "360px",
